@@ -2,7 +2,17 @@
   padding: 3rem;
   min-height: 100vh;
   max-height: 100vh;
-  background-image: url("../content/greekStatue1.webp");
+  background-image: url(/content/greekStatue1.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: var(--max-width);
+}
+
+.categoryhero {
+  padding: 3rem;
+  min-height: 100vh;
+  max-height: 100vh;
+  background-image: url("/content/greekStatue1.webp");
   background-size: cover;
   background-repeat: no-repeat;
   max-width: var(--max-width);
