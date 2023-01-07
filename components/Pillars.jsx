@@ -25,6 +25,8 @@ const Pillars = () => {
                             <span className="font-semibold text-lg">{item.heading}</span> -
                             <span> {item.content}</span>
                         </li>
+
+
                     ))}
                 </ul>
             </div>
