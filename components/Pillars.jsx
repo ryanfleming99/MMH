@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from "../styles/Pillars.module.css";
+import SubHeading from "./Typography/SubHeading"
 
 
 
@@ -18,15 +19,13 @@ const Pillars = () => {
     return (
         <div className={styles.container}>
             <div className="h-[75vh] flex justify-center align-center flex-col margin m-auto">
-                <h3 className="mt-1/3 font-bold text-3xl xs:text-xl border-l-2 border-l-gray-400 pl-4">Use the pillars we have created to help you take control.</h3>
-                <ul className="mt-14 border-l-2 border-l-gray-400 pl-4">
-                    {pillarList.map(item => (
-                        <li className="leading-10">
+                <SubHeading title="Use the pillars we have created to help you take control." />
+                <ul className="mt-14 border-l-2 text-gray-300 border-l-gray-400 pl-4">
+                    {pillarList.map((item, index) => (
+                        <li key={index} className="leading-10">
                             <span className="font-semibold text-lg">{item.heading}</span> -
                             <span> {item.content}</span>
                         </li>
-
-
                     ))}
                 </ul>
             </div>
