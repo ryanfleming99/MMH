@@ -3,6 +3,9 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import getName from "../scripts/getname.js";
+import Header from "../components/Header.jsx"
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -15,36 +18,7 @@ export default function Home() {
         <script src="https://cdn.tailwindcss.com"></script>;
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.hero}>
-        <div className={styles.description}>
-          <p>
-            Welcome to my life
-            <code className={styles.code}></code>
-          </p>
-          <p className="name">Ryan Fleming</p>
-        </div>
-
-        <div className="lg:w-6/12 md:w-3/4 sm:w-3/4 my-2">
-          <div className={styles.content}>
-            <h1 className="text-white lg:text-6xl md:text-5xl sm:text-4xl">
-              Lorem ipsum dolor sit amet consectetur. 123.123
-            </h1>
-            <br />
-            <p className="text-white my-2 text-base">
-              Lorem ipsum dolor sit amet consectetur. Senectus quam viverra orci
-              sed sed turpis in cursus. A tempor faucibus arcu lacus porta
-              auctor tempus id purus.
-            </p>
-            <br />
-            <button
-              type="button"
-              className="border sm:max-w-xs lg:max-w-lg sm:text-xl md:max-w-md w-1/4 border-gray-200 bg-gray-200 text-gray-700 rounded-md px-4 py-2 transition duration-500 ease select-none hover:bg-gray-300 focus:outline-none focus:shadow-outline"
-            >
-              Learn More
-            </button>
-          </div>
-        </div>
-      </main>
+      <Header />
     </>
   );
 }
