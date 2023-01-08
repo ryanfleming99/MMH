@@ -23,7 +23,6 @@ const Navbar = () => {
             <div className={styles.description}>
                 <Image src={Logo} alt="" className="h-16 w-16 " />
 
-
                 {/* Navbar Start */}
                 <div className="">
                     <nav className="flex h-9 items-center justify-between" aria-label="Global">

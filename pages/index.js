@@ -2,7 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
-import Header from "../components/Header.jsx";
+import getName from "../scripts/getname.js";
+import Header from "../components/Header.jsx"
+import Pillars from "../components/Pillars"
+import SignUp from "../components/SignUp"
+import { Sign } from "crypto";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +21,10 @@ export default function Home() {
         <script src="styles/Home.module.css"></script>;
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header style={{ backgroundImage: "url('content/greekStatue1.webp')" }} />
+
+      <Header />
+      <Pillars />
+      <SignUp />
     </>
   );
 }
