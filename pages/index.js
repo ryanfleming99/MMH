@@ -2,10 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
-import getName from "../scripts/getname.js";
-import Header from "../components/Header.jsx"
-import Pillars from "../components/Pillars"
-import SignUp from "../components/SignUp"
+import Header from "../components/Header.jsx";
+import Pillars from "../components/Pillars";
+import SignUp from "../components/SignUp";
 import { Sign } from "crypto";
 
 const inter = Inter({ subsets: ["latin"] });

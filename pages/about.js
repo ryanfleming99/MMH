@@ -2,7 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/About.module.css";
 import CategoryHero from "../components/CategoryHero";
 
 function About() {
@@ -28,12 +28,13 @@ function About() {
         <script src="https://cdn.tailwindcss.com"></script>;
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <CategoryHero
-        title={content[0].title}
-        content1={content[0].content1}
-        content2={content[0].content2}
-      />
+      <section className={styles.about__bg}>
+        <CategoryHero
+          title={content[0].title}
+          content1={content[0].content1}
+          content2={content[0].content2}
+        />
+      </section>
     </>
   );
 }

@@ -1,14 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
 import Navbar from "../components/Navbar";
+import styles from "../styles/About.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const CategoryHero = ({ title, content1, content2 }) => {
+const CategoryHero = ({ title, content1, content2, content3 }) => {
   return (
-    <section className={styles.categoryhero}>
+    <section style={{ background: `url(${content3})` }}>
       <Navbar />
       {/* Navbar End */}
       <div className="lg:w-6/12 md:w-3/4 sm:w-3/4 my-2">

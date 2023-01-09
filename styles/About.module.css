@@ -1,10 +1,11 @@
-.hero {
+.about__bg {
   padding: 3rem;
   min-height: 100vh;
   max-height: 100vh;
+  background-image: url(../content/head3.png);
   background-size: cover;
-  background-image: url(../content/greekStatue1.webp);
   background-repeat: no-repeat;
+  background-color: #444444;
 }
 
 .description {

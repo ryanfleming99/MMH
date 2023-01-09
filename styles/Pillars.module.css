@@ -1,10 +1,15 @@
 .container {
-    padding: 3rem;
-    min-height: 100vh;
-    max-height: 100vh;
-    /* background-image: url("../content/columns2.png"); */
-    background: linear-gradient(0deg, rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.95)), url("../content/columns2.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    max-width: var(--max-width);
+  padding: 3rem;
+  min-height: 100vh;
+  max-height: 100vh;
+  /* background-image: url("../content/columns2.png"); */
+  background: linear-gradient(
+      0deg,
+      rgba(26, 26, 26, 0.95),
+      rgba(26, 26, 26, 0.95)
+    ),
+    url("../content/columns2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: var(--max-width);
 }
