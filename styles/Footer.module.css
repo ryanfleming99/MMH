@@ -1,0 +1,7 @@
+.footerLogo {
+    background-image: url(../content/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px
+}

@@ -10,10 +10,11 @@ import Image from "next/image"
 
 const Navbar = () => {
     const navigation = [
-        { name: 'Product', href: '#' },
-        { name: 'Features', href: '#' },
-        { name: 'Marketplace', href: '#' },
-        { name: 'Company', href: '#' },
+        { name: 'Home', href: '/' },
+        { name: 'About', href: 'about' },
+        { name: 'Exercise', href: 'exercise' },
+        { name: 'Relationship', href: 'relationship' },
+        { name: 'Health', href: 'health' },
     ]
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

@@ -2,11 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
-import Header from "../components/Header.jsx";
-import Pillars from "../components/Pillars";
-import SignUp from "../components/SignUp";
+import Header from "../components/Header.jsx"
+import Pillars from "../components/Pillars"
+import SignUp from "../components/SignUp"
 import { Sign } from "crypto";
-
+import WhatsIncluded from "../components/WhatsIncluded.jsx"
+import Footer from "../components/Footer"
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -24,6 +25,8 @@ export default function Home() {
       <Header />
       <Pillars />
       <SignUp />
+      <WhatsIncluded />
+      <Footer />
     </>
   );
 }
