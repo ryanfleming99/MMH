@@ -22,10 +22,7 @@ const WhatsIncluded = () => {
                 </div>
 
                 {/* Health */}
-                <div className="lg:order-3 sm:order-4 my-auto lg:px-10">
-                    Lorem2 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
 
-                </div>
 
                 <div className="lg:order-4 sm:order-3">
                     <div className={styles.health}>
@@ -35,6 +32,10 @@ const WhatsIncluded = () => {
                     </div>
                 </div>
 
+                <div className="lg:order-3 sm:order-4 my-auto lg:px-10">
+                    Lorem2 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
+
+                </div>
 
                 {/* Relationship */}
                 <div className="lg:order-5 sm:order-5">
@@ -52,10 +53,7 @@ const WhatsIncluded = () => {
                 </div>
 
                 {/* Work */}
-                <div className="lg:order-7 sm:order-8 my-auto lg:px-10">
-                    Lorem4 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
 
-                </div>
 
                 <div className="lg:order-8 sm:order-7">
                     <div className={styles.work}>
@@ -63,6 +61,11 @@ const WhatsIncluded = () => {
                             <TransparentHeader text="Work" />
                         </div>
                     </div>
+                </div>
+
+                <div className="lg:order-7 sm:order-8 my-auto lg:px-10">
+                    Lorem4 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
+
                 </div>
 
 
@@ -84,10 +87,7 @@ const WhatsIncluded = () => {
                 </div>
 
                 {/* Socialising */}
-                <div className=" lg:order-11 sm:order-12 my-auto lg:px-10">
-                    Lorem6 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
 
-                </div>
 
                 <div className="lg:order-12 sm:order-11">
                     <div className={styles.socialising}>
@@ -97,9 +97,11 @@ const WhatsIncluded = () => {
                     </div>
                 </div>
 
+                <div className=" lg:order-11 sm:order-12 my-auto lg:px-10">
+                    Lorem6 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
 
+                </div>
             </div>
-
         </div>
     )
 }
