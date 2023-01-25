@@ -4,8 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import styles from "../styles/Home.module.css";
 import Logo from "../content/logo.png"
 import Image from "next/image"
-
-
+import { useSession, signIn, signOut } from "next-auth/react"
 
 
 const Navbar = () => {
@@ -18,7 +17,9 @@ const Navbar = () => {
     ]
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+    const { data } = useSession()
+    // console.log(data, "session")
+    // console.log("Data", user)
     return (
         <>
             <div className={styles.description}>
@@ -48,9 +49,18 @@ const Navbar = () => {
                                     {item.name}
                                 </a>
                             ))}
-                            <div className="text-white p-2 font-semibold border-white border-2 rounded-lg cursor-pointer hover:text-gray-400 hover:border-gray-400">
-                                <a>Login</a>
-                            </div>
+
+                            {/* Logged in State */}
+                            {data ? (
+                                <div onClick={signOut} className="text-white p-2 h-14 w-14 font-semibold rounded-full object-contain cursor-pointer hover:text-gray-400 hover:border-gray-400">
+                                    <img className="object-contain rounded-full" src={data.user.image} />
+                                </div>)
+                                : (
+                                    /* Logged out State */
+                                    <button onClick={signIn} className="text-white p-2 font-semibold border-white border-2 rounded-lg cursor-pointer hover:text-gray-400 hover:border-gray-400">Login</button>
+
+                                )}
+
                         </div>
 
                     </nav>

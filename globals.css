@@ -1,4 +1,8 @@
-:root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
@@ -60,7 +64,7 @@
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
   }
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -87,15 +91,15 @@ a {
 }
 
 .about__bg {
-  background-image: url(../content/head3.png);
+  background-image: url(./content/head3.png);
 }
 
 .exercise__bg {
-  background-image: url(../content/head3.png);
+  background-image: url(./content/head3.png);
 }
 
 .health__bg {
-  background-image: url(../content/head3.png);
+  background-image: url(./content/head3.png);
 }
 
 @media (prefers-color-scheme: dark) {
