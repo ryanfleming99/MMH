@@ -2,14 +2,16 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
+import NavbarNew from "../components/NavbarNew"
 
 const inter = Inter({ subsets: ["latin"] });
 
 const Header = () => {
     return (
         <main className={styles.hero}>
-            <Navbar />
+            {/* <Navbar /> */}
+            <NavbarNew />
             {/* Navbar End */}
 
             <div className="lg:w-6/12 md:w-3/4 sm:w-3/4 my-2">

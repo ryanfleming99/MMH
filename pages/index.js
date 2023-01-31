@@ -8,9 +8,12 @@ import SignUp from "../components/SignUp"
 import { Sign } from "crypto";
 import WhatsIncluded from "../components/WhatsIncluded.jsx"
 import Footer from "../components/Footer"
+import { useEffect } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+
+
   return (
     <>
       <Head>

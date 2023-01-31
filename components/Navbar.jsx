@@ -4,22 +4,28 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import styles from "../styles/Home.module.css";
 import Logo from "../content/logo.png"
 import Image from "next/image"
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { auth } from "../lib/firebase/firebase"
+import Link from "next/link"
+import ProfileDropdown from "../components/ProfileDropdown"
 
 
 const Navbar = () => {
     const navigation = [
         { name: 'Home', href: '/' },
+        { name: 'Blog', href: 'blog' },
+        { name: 'Admin', href: 'admin' },
         { name: 'About', href: 'about' },
         { name: 'Exercise', href: 'exercise' },
         { name: 'Relationship', href: 'relationship' },
         { name: 'Health', href: 'health' },
+
     ]
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-    const { data } = useSession()
-    // console.log(data, "session")
-    // console.log("Data", user)
+    const [user, loading, error] = useAuthState(auth)
+
+    console.log(user)
     return (
         <>
             <div className={styles.description}>
@@ -43,7 +49,7 @@ const Navbar = () => {
                                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                             </button>
                         </div>
-                        <div className="hidden lg:flex lg:min-w-4 lg:flex-1 lg:justify-center lg:gap-x-8">
+                        <div className=" lg:flex lg:min-w-4 lg:flex-1 lg:justify-center lg:gap-x-8">
                             {navigation.map((item) => (
                                 <a key={item.name} href={item.href} className="font-semibold text-white hover:text-gray-400">
                                     {item.name}
@@ -51,16 +57,16 @@ const Navbar = () => {
                             ))}
 
                             {/* Logged in State */}
-                            {data ? (
-                                <div onClick={signOut} className="text-white p-2 h-14 w-14 font-semibold rounded-full object-contain cursor-pointer hover:text-gray-400 hover:border-gray-400">
-                                    <img className="object-contain rounded-full" src={data.user.image} />
+                            {user ? (
+                                <div className="sm:hidden lg:block">
+                                    <ProfileDropdown user={user} />
                                 </div>)
                                 : (
                                     /* Logged out State */
-                                    <button onClick={signIn} className="text-white p-2 font-semibold border-white border-2 rounded-lg cursor-pointer hover:text-gray-400 hover:border-gray-400">Login</button>
-
+                                    <Link href="/login">
+                                        <button className="text-white p-2 font-semibold border-white border-2 rounded-lg cursor-pointer hover:text-gray-400 hover:border-gray-400">Login</button>
+                                    </Link>
                                 )}
-
                         </div>
 
                     </nav>
