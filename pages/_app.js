@@ -1,8 +1,12 @@
 import "../globals.css";
+import { RecoilRoot } from "recoil";
+
 
 const MyApp = ({ Component, ...pageProps }) => {
   return (
-    <Component {...pageProps} />
+    <RecoilRoot>
+      <Component {...pageProps} />
+    </RecoilRoot>
 
   )
 };

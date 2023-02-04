@@ -3,26 +3,57 @@ import Head from "next/head"
 import dynamic from 'next/dynamic'
 import { v4 as uuidv4 } from 'uuid';
 import { firestore, auth } from "../lib/firebase/firebase"
-import { getDoc, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { getDoc, doc, setDoc, serverTimestamp, runTransaction } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
+import { Listbox } from '@headlessui/react'
+import CategorySelect from "../components/CategorySelect"
+import { useRecoilValue } from "recoil"
+import { blogCat } from "../atoms/blogCategory";
 
 const RichTextEditor = dynamic(() => import("@mantine/rte"), { ssr: false, loading: () => "Loading" });
 
 
 
-
 const admin = () => {
+
+  const categories = [
+    { id: 1, name: 'Health', unavailable: false },
+    { id: 2, name: 'Exercise', unavailable: false },
+    { id: 3, name: 'Work', unavailable: false },
+    { id: 4, name: 'Dating', unavailable: false },
+    { id: 5, name: 'Social', unavailable: false },
+  ]
+
 
   const [user, loading, error] = useAuthState(auth);
   console.log(user)
 
+  const [image, setImage] = useState("")
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
+  const selectedCategory = useRecoilValue(blogCat)
+
+
 
   useEffect(() => {
     console.log(content)
-  }, [content])
+
+  }, [content, selectedCategory])
+
+  const onSelectImage = (event) => {
+
+    const reader = new FileReader()
+
+    if (event.target.files?.[0]) {
+      reader.readAsDataURL(event.target.files[0])
+    }
+    reader.onload = (readerEvent) => {
+      if (readerEvent.target?.result) {
+        setImage(readerEvent.target.result)
+      }
+    }
+  }
 
   const handleCreatePost = async () => {
 
@@ -31,13 +62,16 @@ const admin = () => {
 
     await setDoc(postRef, {
       creator: user.uid,
+      thumbnailImage: image,
       title: title,
       content: content,
+      category: selectedCategory,
       createdAt: serverTimestamp(),
     })
 
     setTitle("")
     setContent("")
+    setImage("")
   }
 
   return (
@@ -45,30 +79,37 @@ const admin = () => {
       <Head>
         <title>Admin</title>
       </Head>
-      <div className=" max-w-[80vw] justify-center items-center ">
+      <div className=" max-w-[80vw] ">
         <h1 className="text-center text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl mt-12 mb-12">Admin</h1>
 
-        {/* Title input */}
+        {/* Image input */}
+        <label className="block text-white text-2xl font-bold md:text-left  md:mb-0 pr-4" htmlFor="inline-full-name">
+          Thumbnail Image upload
+        </label>
+        <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full mb-4 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="file" onChange={e => onSelectImage(e)} />
+        {image && <img src={image} className="w-20 h-20" />}
 
-        <div className="mb-12 text-2xl">
+        {/* Title input */}
+        <div className="mb-4 text-2xl">
           <label className="block text-white font-bold md:text-left mb-1 md:mb-0 pr-4" htmlFor="inline-full-name">
             Title
           </label>
           <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" value={title} onChange={e => setTitle(e.target.value)} />
-
         </div>
-
         <label className="block text-white text-2xl font-bold md:text-left mb-1 md:mb-0 pr-4">
           Content
         </label>
+
         <RichTextEditor value={content} onChange={setContent} id="rte" />
-        <button className=" w-64 mt-12 bg-transparent text-white py-2 px-4 border border-white rounded" onClick={() => handleCreatePost()}>
+
+        {/* Category list */}
+        <CategorySelect />
+
+        <button className=" w-64  bg-transparent mt-12 text-white py-2 px-4 border border-white rounded" onClick={() => handleCreatePost()}>
           Create post
         </button>
+
       </div>
-
-
-
     </div>
   )
 }

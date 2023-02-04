@@ -1,21 +1,32 @@
 import React, { useEffect } from 'react'
 import { FcGoogle } from "react-icons/fc"
 import { getAuth, signInWithPopUp, GoogleAuthProvider } from "firebase/auth"
-import { auth } from "../lib/firebase/firebase"
+import { auth, firestore } from "../lib/firebase/firebase"
 import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth"
 import { useRouter } from "next/router"
+import { setDoc, doc } from "firebase/firestore"
 
 const login = () => {
 
 
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth)
+    const [signInWithGoogle, userCred, loading, error] = useSignInWithGoogle(auth)
     const router = useRouter()
 
     const handleGoogleSignIn = async () => {
         await signInWithGoogle()
         router.push("/")
-
     }
+
+    const createUserDoc = async (user) => {
+        const userDocRef = doc(firestore, "users", user.uid)
+        await setDoc(userDocRef, JSON.parse(JSON.stringify(user)))
+    }
+
+    useEffect(() => {
+        if (userCred) {
+            createUserDoc(userCred.user)
+        }
+    }, [userCred])
 
     return (
         <div className="flex h-screen">
