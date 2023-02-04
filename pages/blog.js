@@ -50,14 +50,17 @@ function blog() {
             <div className=" mx-auto max-w-4xl">
                 <h1 className="text-center text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl">Blog</h1>
                 <p className="text-gray-300 pt-12 mx-auto w-3/5">Lorem ipsum dolor sit amet consectetur. Senectus quam viverra orci sed sed turpis in cursus. A tempor faucibus arcu lacus porta auctor tempus id purus.</p>
+                <div className=" flex text-white justify-evenly mt-12">
+                    {postCategories.map(category => {
+                        return (
+                            <button className="rounded-full border border-white px-4 py-2" key={category.id} onClick={(category) => handlePostFilter(category, posts)}> {category.name}</button>
+                        )
+                    })}
+                </div>
 
                 {/* Blog grid */}
                 <div className="grid gap-14 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 items-center  mx-auto w-3/5 sm:w-full text-gray-300">
-                    {postCategories.map(category => {
-                        return (
-                            <button key={category.id} onClick={(category) => handlePostFilter(category, posts)}> {category.name}</button>
-                        )
-                    })}
+
                     {posts?.map(post => {
                         return (
                             <div key={post.id} className="" style={{ backgroundImage: `url${post.image}` }}>
