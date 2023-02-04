@@ -7,11 +7,20 @@ import { isAssertEntry } from "typescript"
 import { querystring } from "@firebase/util"
 import parse from 'html-react-parser';
 import DOMPurify from "dompurify";
-import Image from "next/image"
+import Link from "next/link"
 
 
 
 function blog() {
+
+    const postCategories = [
+        { id: 1, name: "Health" },
+        { id: 2, name: "Exercise" },
+        { id: 3, name: "Work" },
+        { id: 4, name: "Dating" },
+        { id: 5, name: "Social" },
+    ]
+
     const [posts, setPosts] = useState([])
 
     const getPosts = async () => {
@@ -21,10 +30,18 @@ function blog() {
         console.log(postsResult)
     }
 
+    const handlePostFilter = (category, posts) => {
+        const filteredPosts = posts?.filter((post) => {
+            post.category.name == category.name
+        })
+
+
+        console.log(filteredPosts)
+    }
     useEffect(() => {
         getPosts()
     }, [])
-    console.log(posts)
+
     return (
         <div className="mx-auto max-w-screen p-3 bg-gray-800 min-h-screen">
             <Head>
@@ -35,12 +52,20 @@ function blog() {
                 <p className="text-gray-300 pt-12 mx-auto w-3/5">Lorem ipsum dolor sit amet consectetur. Senectus quam viverra orci sed sed turpis in cursus. A tempor faucibus arcu lacus porta auctor tempus id purus.</p>
 
                 {/* Blog grid */}
-                <div className="grid gap-14 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 items-center  mx-auto w-3/5 sm:w-full text-gray-300  ">
+                <div className="grid gap-14 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 items-center  mx-auto w-3/5 sm:w-full text-gray-300">
+                    {postCategories.map(category => {
+                        return (
+                            <button key={category.id} onClick={(category) => handlePostFilter(category, posts)}> {category.name}</button>
+                        )
+                    })}
                     {posts?.map(post => {
                         return (
                             <div key={post.id} className="" style={{ backgroundImage: `url${post.image}` }}>
-                                <img className="w-72 h-52 mx-auto object-cover" src={post.thumbnailImage} />
-                                <h3 className="text-white text-center">{post.title}</h3>
+                                <Link href={`/posts/${post.id}`}>
+                                    <img className="w-72 h-52 mx-auto object-cover" src={post.thumbnailImage} />
+                                    <h3 className="text-white text-center">{post.title}</h3>
+
+                                </Link>
                                 {/* <article className="prose mx-auto text-white">{parse(DOMPurify.sanitize(post.content))}</article> */}
                             </div>
                         )
