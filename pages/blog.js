@@ -14,6 +14,7 @@ import Link from "next/link"
 function blog() {
 
     const postCategories = [
+        { id: 0, name: "All" },
         { id: 1, name: "Health" },
         { id: 2, name: "Exercise" },
         { id: 3, name: "Work" },
@@ -22,25 +23,37 @@ function blog() {
     ]
 
     const [posts, setPosts] = useState([])
+    const [filtered, setFiltered] = useState([])
+    const [filterCategory, setFilterCategory] = useState(0)
+
 
     const getPosts = async () => {
         const querySnapshot = await getDocs(collection(firestore, "posts"))
         const postsResult = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
         setPosts(postsResult)
+        setFiltered(postsResult)
         console.log(postsResult)
     }
 
-    const handlePostFilter = (category, posts) => {
-        const filteredPosts = posts?.filter((post) => {
-            post.category.name == category.name
-        })
 
 
-        console.log(filteredPosts)
-    }
     useEffect(() => {
         getPosts()
     }, [])
+
+    useEffect(() => {
+        console.log(posts, "original posts")
+        console.log(filterCategory)
+        setFiltered(posts)
+        if (filterCategory == 0) {
+            setFiltered(posts)
+        } else {
+            const filteredPosts = posts.filter(post => post.category.id == filterCategory)
+            console.log(filtered, "filtered posts")
+            setFiltered(filteredPosts)
+        }
+
+    }, [filterCategory])
 
     return (
         <div className="mx-auto max-w-screen p-3 bg-gray-800 min-h-screen">
@@ -53,7 +66,7 @@ function blog() {
                 <div className=" flex text-white justify-evenly mt-12">
                     {postCategories.map(category => {
                         return (
-                            <button className="rounded-full border border-white px-4 py-2" key={category.id} onClick={(category) => handlePostFilter(category, posts)}> {category.name}</button>
+                            <button className="rounded-full border border-white px-4 py-2" key={category.id} onClick={() => setFilterCategory(category.id)}>{category.name}</button>
                         )
                     })}
                 </div>
@@ -61,7 +74,7 @@ function blog() {
                 {/* Blog grid */}
                 <div className="grid gap-14 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 items-center  mx-auto w-3/5 sm:w-full text-gray-300">
 
-                    {posts?.map(post => {
+                    {filtered.map(post => {
                         return (
                             <div key={post.id} className="" style={{ backgroundImage: `url${post.image}` }}>
                                 <Link href={`/posts/${post.id}`}>
