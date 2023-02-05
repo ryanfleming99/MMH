@@ -12,6 +12,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         "exerciseImg": url("/content/categoryImages/exercise.jpg")
+      },
+      colors: {
+        mainbg: "#1b1b1b"
       }
     },
   },

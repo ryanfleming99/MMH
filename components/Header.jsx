@@ -11,7 +11,7 @@ const Header = () => {
     return (
         <main className={styles.hero}>
             {/* <Navbar /> */}
-            <NavbarNew />
+            {/* <NavbarNew /> */}
             {/* Navbar End */}
 
             <div className="lg:w-6/12 md:w-3/4 sm:w-3/4 my-2">

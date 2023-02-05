@@ -1,34 +1,38 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from "next/image"
 import Logo from "../content/logo.png"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth"
 import { auth } from "../lib/firebase/firebase"
 
-const navigation = [
-    { name: 'Home', href: '/', current: true },
-    { name: 'Blog', href: 'blog', current: false },
-    { name: 'Admin', href: 'admin', current: false },
-    { name: 'About', href: 'about', current: false },
-    { name: 'Exercise', href: 'exercise', current: false },
-    { name: 'Relationship', href: 'relationship', current: false },
-    { name: 'Health', href: 'health', current: false },
 
-]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function NavbarNew() {
+    const router = useRouter()
+
+    const navigation = [
+        { name: 'Home', href: '/', current: router.pathname == "/" },
+        { name: 'Blog', href: 'blog', current: router.pathname == "/blog" },
+        { name: 'Admin', href: 'admin', current: router.pathname == "/admin" },
+        { name: 'About', href: 'about', current: router.pathname == "/about" },
+        { name: 'Exercise', href: 'exercise', current: router.pathname == "/exercise" },
+        { name: 'Relationship', href: 'relationship', current: router.pathname == "/relationship" },
+        { name: 'Health', href: 'health', current: router.pathname == "health" },
+
+    ]
 
     const [user, loading, error] = useAuthState(auth)
     const [signOut] = useSignOut(auth);
 
-
+    console.log(router.pathname)
 
     return (
         <Disclosure as="nav" className="bg-gray-800">

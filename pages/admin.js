@@ -10,6 +10,8 @@ import { Listbox } from '@headlessui/react'
 import CategorySelect from "../components/CategorySelect"
 import { useRecoilValue } from "recoil"
 import { blogCat } from "../atoms/blogCategory";
+import NavbarNew from "../components/NavbarNew";
+import Navbar from "../components/Navbar";
 
 const RichTextEditor = dynamic(() => import("@mantine/rte"), { ssr: false, loading: () => "Loading" });
 
@@ -75,11 +77,12 @@ const admin = () => {
   }
 
   return (
-    <div className=" grid min-w-screen min-h-screen bg-gray-800 justify-center">
+    <div className=" grid min-w-screen min-h-screen bg-mainbg justify-center">
       <Head>
         <title>Admin</title>
       </Head>
       <div className=" max-w-[80vw] ">
+        <NavbarNew />
         <h1 className="text-center text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl mt-12 mb-12">Admin</h1>
 
         {/* Image input */}
