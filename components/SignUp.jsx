@@ -20,16 +20,15 @@ const SignUp = () => {
 
 
     return (
-        <div className={styles.container}>
-            <div className="grid lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 sm:w-full">
+        <div className="px-3 py-24 min-">
+            <div className="grid items-center w-4/5 lg:w-2/3 mx-auto">
                 <div>
-                    <h4 className="text-gray-300 text-2xl">Tools we use to help you improve.</h4>
 
-                    <ul className="mt-4 leading-10 text-gray-300">
+                    {/* <ul className="mt-4 leading-10 text-gray-300">
                         {toolsList.map((item, index) => (
                             <li key={index}>{index + 1}. {item}</li>
                         ))}
-                    </ul>
+                    </ul> */}
                 </div>
                 <div>
                     <SignUpForm />

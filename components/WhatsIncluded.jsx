@@ -2,11 +2,13 @@ import React from 'react'
 import styles from "../styles/WhatsIncluded.module.css"
 import SubHeading from "../components/Typography/SubHeading"
 import TransparentHeader from "../components/Typography/TransparentHeader"
+import SignUp from "./SignUp"
 const WhatsIncluded = () => {
     return (
-        <div className={styles.container}>
-            <SubHeading title="What's included" />
-            <div className="grid gap-14 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 sm:w-full text-gray-300  ">
+        <div className="bg-mainbg p-3 mt-12 min-h-screen">
+            <SubHeading title="Wellness resources for your mind and body" />
+            <p className="mt-12 w-4/5 lg:w-1/3 mx-auto text-center text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi non, quibusdam voluptatum excepturi commodi, hic architecto quos culpa molestias quasi nobis vel explicabo reiciendis repellat tenetur velit quis provident.</p>
+            <div className="grid gap-14 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 w-full lg:w-4/5 mx-auto text-gray-300  ">
                 {/* Exercise */}
                 <div className="lg:order-1 sm:order-1">
                     <div className={styles.exercise}>
@@ -102,6 +104,7 @@ const WhatsIncluded = () => {
 
                 </div>
             </div>
+            <SignUp />
         </div>
     )
 }

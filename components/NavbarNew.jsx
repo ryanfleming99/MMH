@@ -35,7 +35,7 @@ export default function NavbarNew() {
     console.log(router.pathname)
 
     return (
-        <Disclosure as="nav" className="bg-gray-800">
+        <Disclosure as="nav" className="bg-navbarbg w-screen mx-auto">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-full px-2 sm:px-6 lg:px-8">
