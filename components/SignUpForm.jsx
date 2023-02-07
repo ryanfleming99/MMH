@@ -15,7 +15,7 @@ const SignUpForm = () => {
                 <div className="lg:w-2/3 mx-auto">
                     <SubHeading title="BY SIGNING UP, YOU HELP US, HELP PEOPLE." />
                 </div>
-                <form className="lg:w-2/3 mt-10  mx-auto " >
+                <form className="lg:w-2/3 mt-10  mx-auto text-white " >
 
                     {/* Name Input */}
                     <label htmlFor="name" className="block text-lg font-medium text-gray-200"> Name</label >
@@ -33,7 +33,7 @@ const SignUpForm = () => {
 
                     {/* Submit Button */}
                     <div className="flex mt-4">
-                        <button type="submit" className="mx-auto lg:w-1/2 w-3/4 h-12 bg-btngray hover:bg-gray-100 text-black font-bold text-lg py-2 px-4 rounded">
+                        <button type="submit" className="mx-auto lg:w-1/2 w-3/4 h-12 bg-btngray text-black font-bold text-lg py-2 px-4 rounded hover:bg-mainbg hover:border-2 hover:border-white transition ease-in-out delay-50 hover:text-white ">
                             Send
                         </button>
                     </div>

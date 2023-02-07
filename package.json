@@ -23,6 +23,7 @@
     "eslint": "8.30.0",
     "eslint-config-next": "13.0.7",
     "firebase": "^9.16.0",
+    "framer-motion": "^9.0.1",
     "heroicons": "^2.0.14",
     "html-react-parser": "^3.0.8",
     "isomorphic-dompurify": "^0.26.0",

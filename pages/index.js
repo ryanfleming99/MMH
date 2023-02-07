@@ -26,7 +26,7 @@ export default function Home() {
       </Head>
       <NavbarNew />
       <Header />
-      <Pillars />
+      {/* <Pillars /> */}
       <WhatsIncluded />
       <Footer />
     </main>

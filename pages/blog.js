@@ -10,7 +10,7 @@ import DOMPurify from "dompurify";
 import Link from "next/link"
 import NavbarNew from "../components/NavbarNew"
 import Navbar from "../components/Navbar"
-
+import { motion } from "framer-motion"
 
 
 function blog() {
@@ -69,30 +69,33 @@ function blog() {
                 <div className=" flex flex-wrap gap-3  text-white place-content-center justify-evenly mt-12">
                     {postCategories.map(category => {
                         return (
-                            <button className="rounded-full flex-1  bg-white text-gray-800 font-semibold px-4 py-2 my-2" key={category.id} onClick={() => setFilterCategory(category.id)}>{category.name}</button>
+                            <button className=" flex-1  bg-white text-gray-800 font-semibold px-4 py-2 my-2" key={category.id} onClick={() => setFilterCategory(category.id)}>{category.name}</button>
                         )
                     })}
                 </div>
 
                 {/* Blog grid */}
-                <div className="grid gap-14 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300">
+                <motion.div layout className="grid gap-4 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300">
 
                     {filtered.map(post => {
                         return (
-                            <div className="relative " key={post.id} style={{ backgroundImage: `url${post.image}` }}>
+                            <motion.div layout animate={{ opacity: 1 }}
+                                initial={{ opacity: 0 }}
+                                exit={{ opacitiy: 0 }}
+                                className="relative" key={post.id} style={{ backgroundImage: `url${post.image}` }}>
                                 <Link href={`/posts/${post.id}`}>
                                     <img className="w-full h-52 mx-auto object-cover" src={post.thumbnailImage} />
-                                    <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+                                    <div className="absolute inset-0 bg-black bg-opacity-60 "></div>
                                     <h3 className="text-white text-center font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">{post.title}</h3>
 
                                 </Link>
                                 {/* <article className="prose mx-auto text-white">{parse(DOMPurify.sanitize(post.content))}</article> */}
-                            </div>
+                            </motion.div>
                         )
                     })}
 
 
-                </div>
+                </motion.div>
             </div>
         </div >
     )

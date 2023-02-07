@@ -10,6 +10,9 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
     extend: {
+      translate: {
+        100: "28rem"
+      },
       backgroundImage: {
         "exerciseImg": url("/content/categoryImages/exercise.jpg")
       },

@@ -2,6 +2,8 @@ import React from 'react'
 import styles from "../styles/SignUp.module.css"
 import SubHeading from "./Typography/SubHeading"
 import SignUpForm from "../components/SignUpForm"
+import { motion } from "framer-motion"
+
 const SignUp = () => {
 
     const toolsList = [
@@ -20,7 +22,11 @@ const SignUp = () => {
 
 
     return (
-        <div className="px-3 py-24 min-">
+        <motion.div initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="px-3 py-24 min-">
             <div className="grid items-center w-4/5 lg:w-2/3 mx-auto">
                 <div>
 
@@ -35,7 +41,7 @@ const SignUp = () => {
                 </div>
             </div>
 
-        </div>
+        </motion.div>
     )
 }
 
