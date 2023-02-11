@@ -29,7 +29,7 @@ const Navbar = () => {
     return (
         <>
             <div className={styles.description}>
-                <Image src={Logo} alt="" className="h-16 w-16 " />
+                <Image src={Logo} alt="profile icon" className="h-16 w-16 " />
 
                 {/* Navbar Start */}
                 <div className="">

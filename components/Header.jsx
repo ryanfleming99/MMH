@@ -37,22 +37,22 @@ const Header = () => {
                 initial={{ opacity: 0, x: 200 }}
                 className="mx-auto hidden lg:block ">
                 <div className="absolute translate-x-12 translate-y-24">
-                    <Image src="/boxing.jpg " width={350} height={350} alt="" />
+                    <Image src="/boxing.jpg " width={350} height={350} alt="boxing image" />
                 </div>
                 <div className="absolute ">
-                    <Image src="/rain.jpg " width={350} height={350} alt="" />
+                    <Image src="/rain.jpg " width={350} height={350} alt="raining backdrop" />
 
                 </div>
                 <div className="absolute translate-y-12 translate-x-40">
-                    <Image src="/chart.jpg " width={350} height={350} alt="" />
+                    <Image src="/chart.jpg " width={350} height={350} alt="mobile phone showing trading chart" />
                 </div>
                 <div className="absolute -translate-y-36 translate-x-36">
-                    <Image src="/forest.jpg " width={350} height={350} alt="" />
+                    <Image src="/forest.jpg " width={350} height={350} alt="snow covered forest" />
 
                 </div>
 
                 <div className="-translate-y-20 translate-x-20">
-                    <Image src="/sunset.jpg " width={350} height={350} alt="" />
+                    <Image src="/sunset.jpg " width={350} height={350} alt="sunset overlooking a city" />
 
                 </div>
 
