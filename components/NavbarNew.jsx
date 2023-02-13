@@ -26,6 +26,7 @@ export default function NavbarNew() {
         { name: 'Exercise', href: 'exercise', current: router.pathname == "/exercise" },
         { name: 'Relationship', href: 'relationship', current: router.pathname == "/relationship" },
         { name: 'Health', href: 'health', current: router.pathname == "health" },
+        { name: 'Pricing', href: 'pricing', current: router.pathname == "pricing" },
 
     ]
 
