@@ -2,41 +2,56 @@ import { useEffect, useState } from "react"
 import PricingCard from "../components/PricingCard"
 import { doc, getDoc, getDocs, collection, where, query, ref } from "firebase/firestore"
 import { firestore } from "../lib/firebase/firebase.js"
-
+import { motion } from "framer-motion"
+import Spinner from "../components/Spinner"
 
 const pricing = () => {
 
-    const pricingTiers = [
-        {
-            name: "Bronze", price: 14.99, url: "",
-            features: ["1 User", "All UI components", "Lifetime access", "Free updates", "Use on 1 (one) project", "3 Months support"]
-        },
-        {
-            name: "Silver", price: 24.99, url: "",
-            features: ["1 User", "All UI components", "Lifetime access", "Free updates", "Use on 1 (one) project", "3 Months support"]
-        },
-        {
-            name: "Gold", price: 34.99, url: "",
-            features: ["1 User", "All UI components", "Lifetime access", "Free updates", "Use on 1 (one) project", "3 Months support"]
-        }
-    ]
+
 
     const [products, setProducts] = useState([])
-
+    const [fetching, setFetching] = useState(false)
 
 
     const getProducts = async () => {
-        console.log("hello")
+        const productsObj = {}
 
+        const querySnapshot = await getDocs(collection(firestore, "products"))
+        querySnapshot.docs.forEach(async doc => {
+            productsObj[doc.id] = doc.data()
 
+            const pricesSnap = await getDocs(collection(firestore, "products", doc.id, "prices"))
+            pricesSnap.docs.forEach(price => {
+                productsObj[doc.id].prices = {
+                    priceId: price.id,
+                    priceData: price.data()
+                }
+            })
+            setProducts(productsObj)
+        })
 
+        console.log(productsObj)
     }
+
     useEffect(() => {
-        getProducts()
+        setFetching(true)
+        const fetchProducts = async () => {
+
+            await getProducts()
+            setFetching(false)
+        }
+
+        fetchProducts()
     }, [])
+
+
     return (
-        <div className="px-2 bg-mainbg text-gray-200">
-            <section
+        <div className="px-2 bg-mainbg text-gray-200 min-h-screen">
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true }}
                 className="relative z-20 overflow-hidden bg-mainbg pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
                 <div className="container mx-auto">
                     <div className="-mx-4 flex flex-wrap">
@@ -57,12 +72,26 @@ const pricing = () => {
                         </div>
                     </div>
                     <div className="-mx-4 flex flex-wrap justify-center">
-                        {pricingTiers.map(tier => {
+                        {/* {pricingTiers.map(tier => {
                             return (<PricingCard key={tier.name} name={tier.name} price={tier.price} url={tier.url} features={tier.features} />)
+                        })} */}
+
+                        {products && !fetching && Object.entries(products).map(([id, data]) => {
+                            // console.log("DATA", data.prices.priceData)
+                            return (
+                                <PricingCard
+                                    productData={data}
+                                    key={data.name}
+                                    name={data.name}
+                                    price={data.prices?.priceData?.unit_amount}
+                                    url={""}
+                                    features={data.description} />)
+
                         })}
+
                     </div>
                 </div>
-            </section>
+            </motion.section>
         </div>
     )
 }

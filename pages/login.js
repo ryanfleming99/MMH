@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import { auth } from "../lib/firebase/firebase"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { useRouter } from "next/router"
-import Spinner from "../components/loadingSpinner"
+import Spinner from "../components/Spinner"
 import { motion } from "framer-motion"
 
 function classNames(...classes) {
@@ -28,7 +28,7 @@ export default function LoginNew() {
     const inputStyles = "leading-8 py-3 mt-1 text-white bg-gray-600 block w-full rounded-sm border-gray-400 pl-7 pr-12 focus:border-black-500 focus:ring-black-500 sm:text-sm"
     const router = useRouter()
 
-    const handleRegister = () => {
+    const handleRegister = (e) => {
         e.preventDefault()
 
         createUserWithEmailAndPassword(
