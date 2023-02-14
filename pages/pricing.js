@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import PricingCard from "../components/PricingCard"
 import { doc, getDoc, getDocs, collection, where, query, ref } from "firebase/firestore"
 import { firestore } from "../lib/firebase/firebase.js"
-
+import { motion } from "framer-motion"
+import Spinner from "../components/Spinner"
 
 const pricing = () => {
 
@@ -13,7 +14,6 @@ const pricing = () => {
 
 
     const getProducts = async () => {
-        setFetching(true)
         const productsObj = {}
 
         const querySnapshot = await getDocs(collection(firestore, "products"))
@@ -29,19 +29,29 @@ const pricing = () => {
             })
             setProducts(productsObj)
         })
-        setFetching(false)
 
-        console.log(products)
+        console.log(productsObj)
     }
 
     useEffect(() => {
-        getProducts()
+        setFetching(true)
+        const fetchProducts = async () => {
+
+            await getProducts()
+            setFetching(false)
+        }
+
+        fetchProducts()
     }, [])
 
 
     return (
-        <div className="px-2 bg-mainbg text-gray-200">
-            <section
+        <div className="px-2 bg-mainbg text-gray-200 min-h-screen">
+            <motion.section
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true }}
                 className="relative z-20 overflow-hidden bg-mainbg pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
                 <div className="container mx-auto">
                     <div className="-mx-4 flex flex-wrap">
@@ -66,7 +76,7 @@ const pricing = () => {
                             return (<PricingCard key={tier.name} name={tier.name} price={tier.price} url={tier.url} features={tier.features} />)
                         })} */}
 
-                        {products && Object.entries(products).map(([id, data]) => {
+                        {products && !fetching && Object.entries(products).map(([id, data]) => {
                             // console.log("DATA", data.prices.priceData)
                             return (
                                 <PricingCard
@@ -78,9 +88,10 @@ const pricing = () => {
                                     features={data.description} />)
 
                         })}
+
                     </div>
                 </div>
-            </section>
+            </motion.section>
         </div>
     )
 }
