@@ -11,14 +11,16 @@ const CategorySelect = () => {
         { id: 1, name: 'Health', unavailable: false },
         { id: 2, name: 'Exercise', unavailable: false },
         { id: 3, name: 'Work', unavailable: false },
-        { id: 4, name: 'Dating', unavailable: true },
+        { id: 4, name: 'Dating', unavailable: false },
         { id: 5, name: 'Social', unavailable: false },
     ]
 
     const [selectedCategory, setSelectedCategory] = useRecoilState(blogCat)
+
     console.log(selectedCategory)
+
     return (
-        <div className="w-1/3 mt-4">
+        <div className="w-1/3 mt-4 text-black">
             <label className="block text-white text-2xl font-bold md:text-left  md:mb-0 pr-4" htmlFor="inline-full-name">
                 Category
             </label>
@@ -39,7 +41,7 @@ const CategorySelect = () => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             {categories.map((category, categoryIdx) => (
                                 <Listbox.Option
                                     key={categoryIdx}
