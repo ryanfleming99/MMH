@@ -20,13 +20,14 @@ export default function NavbarNew() {
 
     const navigation = [
         { name: 'Home', href: '/', current: router.pathname == "/" },
-        { name: 'Blog', href: 'blog', current: router.pathname == "/blog" },
-        { name: 'Admin', href: 'admin', current: router.pathname == "/admin" },
-        { name: 'About', href: 'about', current: router.pathname == "/about" },
+        { name: 'Blog', href: '/blog', current: router.pathname == "/blog" },
+        { name: 'Admin', href: '/admin', current: router.pathname.includes("/admin") },
+        { name: 'About', href: '/about', current: router.pathname == "/about" },
         { name: 'Exercise', href: 'exercise', current: router.pathname == "/exercise" },
         { name: 'Relationship', href: 'relationship', current: router.pathname == "/relationship" },
-        { name: 'Health', href: 'health', current: router.pathname == "health" },
-        { name: 'Pricing', href: 'pricing', current: router.pathname == "pricing" },
+        { name: 'Health', href: 'health', current: router.pathname == "/health" },
+        { name: 'Pricing', href: 'pricing', current: router.pathname == "/pricing" },
+        { name: 'Dashboard', href: 'dashboard', current: router.pathname == "/dashboard" },
 
     ]
 

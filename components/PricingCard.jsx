@@ -41,22 +41,14 @@ const PricingCard = ({ productData, name, price, url, features }) => {
             querySnapshot.forEach((doc) => {
                 sessions.push(doc.data());
             })
-            setSessionDoc(sessions)
+            setSessionDoc(sessions[0])
             console.log("Current sessions ", sessionDoc);
         });
 
-        // const sessionFetch = await getDocs(collection(firestore, "customers", user.uid, "checkout_sessions"), orderBy("created", "desc"), limit(1))
-        // const sessionResult = sessionFetch.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-        // setSessionDoc(sessionResult)
-
-        // if (sessionDoc) {
-        //     console.log("SESSION", sessionDoc[0].sessionId)
-
-        // }
 
         if (sessionDoc) {
             const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUB)
-            const sessionId = sessionDoc[0].sessionId
+            const sessionId = sessionDoc.sessionId
             stripe.redirectToCheckout({ sessionId })
         }
         setLoading(false)

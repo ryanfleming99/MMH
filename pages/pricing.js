@@ -75,7 +75,7 @@ const pricing = () => {
                         {/* {pricingTiers.map(tier => {
                             return (<PricingCard key={tier.name} name={tier.name} price={tier.price} url={tier.url} features={tier.features} />)
                         })} */}
-
+                        {fetching && (<div className="flex justify-center"><Spinner /></div>)}
                         {products && !fetching && Object.entries(products).map(([id, data]) => {
                             // console.log("DATA", data.prices.priceData)
                             return (
