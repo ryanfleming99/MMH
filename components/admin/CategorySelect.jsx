@@ -1,23 +1,24 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useState, Fragment } from "react"
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { useRecoilState } from "recoil"
-import { blogCat } from "../atoms/blogCategory"
+import { blogCat } from "../../atoms/blogCategory"
 
-const CategorySelect = () => {
+const CategorySelect = ({ categories }) => {
 
-    const categories = [
-        { id: 1, name: 'Health', unavailable: false },
-        { id: 2, name: 'Exercise', unavailable: false },
-        { id: 3, name: 'Work', unavailable: false },
-        { id: 4, name: 'Dating', unavailable: false },
-        { id: 5, name: 'Social', unavailable: false },
-    ]
 
     const [selectedCategory, setSelectedCategory] = useRecoilState(blogCat)
+    const [blogCategories, setBlogCategories] = useState([])
 
-    console.log(selectedCategory)
+
+    useEffect(() => {
+        setBlogCategories(categories)
+
+
+    }, [categories])
+
+
 
     return (
         <div className="w-1/3 mt-4 text-black">
@@ -41,8 +42,8 @@ const CategorySelect = () => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                            {categories.map((category, categoryIdx) => (
+                        <Listbox.Options className="absolute z-10 overflow-y-auto mt-1 max-h-60 w-full rounded-md bg-white py-1 text-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            {blogCategories?.map((category, categoryIdx) => (
                                 <Listbox.Option
                                     key={categoryIdx}
                                     className={({ active }) =>

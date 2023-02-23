@@ -9,7 +9,6 @@ import parse from 'html-react-parser';
 import DOMPurify from "dompurify";
 import Link from "next/link"
 import NavbarNew from "../components/NavbarNew"
-import Navbar from "../components/Navbar"
 import { motion } from "framer-motion"
 
 

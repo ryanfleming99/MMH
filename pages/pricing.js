@@ -4,6 +4,7 @@ import { doc, getDoc, getDocs, collection, where, query, ref } from "firebase/fi
 import { firestore } from "../lib/firebase/firebase.js"
 import { motion } from "framer-motion"
 import Spinner from "../components/Spinner"
+import Navbar from "../components/NavbarNew"
 
 const pricing = () => {
 
@@ -46,7 +47,8 @@ const pricing = () => {
 
 
     return (
-        <div className="px-2 bg-mainbg text-gray-200 min-h-screen">
+        <div className=" py-2 mx-auto bg-mainbg text-gray-200 min-h-screen">
+            <Navbar />
             <motion.section
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -76,7 +78,7 @@ const pricing = () => {
                             return (<PricingCard key={tier.name} name={tier.name} price={tier.price} url={tier.url} features={tier.features} />)
                         })} */}
                         {fetching && (<div className="flex justify-center"><Spinner /></div>)}
-                        {products && !fetching && Object.entries(products).map(([id, data]) => {
+                        {Object.keys(products).length > 2 && !fetching && Object.entries(products).map(([id, data]) => {
                             // console.log("DATA", data.prices.priceData)
                             return (
                                 <PricingCard

@@ -7,11 +7,10 @@ import { getDoc, doc, setDoc, serverTimestamp, runTransaction } from "firebase/f
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { Listbox } from '@headlessui/react'
-import CategorySelect from "../../components/CategorySelect"
+import CategorySelect from "../../components/admin/CategorySelect"
 import { useRecoilValue } from "recoil"
 import { blogCat } from "../../atoms/blogCategory";
 import NavbarNew from "../../components/NavbarNew";
-import Navbar from "../../components/Navbar";
 
 const RichTextEditor = dynamic(() => import("@mantine/rte"), { ssr: false, loading: () => "Loading" });
 
@@ -19,7 +18,7 @@ const RichTextEditor = dynamic(() => import("@mantine/rte"), { ssr: false, loadi
 
 const CreateBlogPost = () => {
 
-    const categories = [
+    const blogCategories = [
         { id: 1, name: 'Health', unavailable: false },
         { id: 2, name: 'Exercise', unavailable: false },
         { id: 3, name: 'Work', unavailable: false },
@@ -77,13 +76,13 @@ const CreateBlogPost = () => {
     }
 
     return (
-        <div className=" grid min-w-screen min-h-screen bg-mainbg justify-center">
+        <div className=" min-w-screen min-h-screen bg-mainbg">
             <Head>
-                <title>Admin</title>
+                <title>Create Blog Post</title>
             </Head>
-            <div className=" max-w-[80vw] ">
-                <NavbarNew />
-                <h1 className="text-center text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl mt-12 mb-12">Admin</h1>
+            <NavbarNew />
+            <div className=" max-w-5xl mx-auto ">
+                <h1 className="text-center text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl mt-12 mb-12">Create Blog Post</h1>
 
                 {/* Image input */}
                 <label className="block text-white text-2xl font-bold md:text-left  md:mb-0 pr-4" htmlFor="inline-full-name">
@@ -106,7 +105,7 @@ const CreateBlogPost = () => {
                 <RichTextEditor value={content} onChange={setContent} id="rte" />
 
                 {/* Category list */}
-                <CategorySelect />
+                <CategorySelect categories={blogCategories} />
 
                 <button className=" w-64  bg-transparent mt-12 text-white py-2 px-4 border border-white rounded" onClick={() => handleCreatePost()}>
                     Create post

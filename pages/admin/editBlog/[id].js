@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Head from "next/head"
 import dynamic from 'next/dynamic'
-import { v4 as uuidv4 } from 'uuid';
 import { firestore, auth } from "../../../lib/firebase/firebase"
-import { getDoc, doc, setDoc, serverTimestamp, runTransaction, query, updateDoc } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
-import { Listbox } from '@headlessui/react'
-import CategorySelect from "../../../components/CategorySelect"
+import CategorySelect from "../../../components/admin/CategorySelect"
 import { useRecoilValue } from "recoil"
 import NavbarNew from "../../../components/NavbarNew";
-import Navbar from "../../../components/Navbar";
 import { useRouter } from "next/router"
 import { useRecoilState } from "recoil";
 import { blogCat } from "../../../atoms/blogCategory";
@@ -31,13 +28,19 @@ const EditBlogPost = () => {
     const [fetching, setFetching] = useState(false)
     const [selectedCategory, setSelectedCategory] = useRecoilState(blogCat)
 
+    const blogCategories = [
+        { id: 1, name: 'Health', unavailable: false },
+        { id: 2, name: 'Exercise', unavailable: false },
+        { id: 3, name: 'Work', unavailable: false },
+        { id: 4, name: 'Dating', unavailable: false },
+        { id: 5, name: 'Social', unavailable: false },
+    ]
+
 
 
 
     const getPost = async () => {
         const querySnapshot = await getDoc(doc(firestore, "posts", id))
-        // const postResult = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-        // setPost(postResult)
 
         setPost(querySnapshot.data())
         setTitle(querySnapshot?.data().title)
@@ -56,19 +59,12 @@ const EditBlogPost = () => {
                 await getPost()
             }
             fetchPost()
-
         }
     }, [])
 
 
 
-    // useEffect(() => {
-    //     // console.log(content)
-
-    // }, [content, selectedCategory])
-
     const onSelectImage = (event) => {
-
         const reader = new FileReader()
 
         if (event.target.files?.[0]) {
@@ -84,8 +80,7 @@ const EditBlogPost = () => {
     const handleCreatePost = async () => {
 
         const postRef = doc(firestore, "posts", id)
-        // const postDoc = await updateDoc(postRef)
-        console.log("REFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF", postRef)
+        console.log("REFFF", postRef)
 
         await updateDoc(postRef, {
             creator: user.uid,
@@ -93,7 +88,6 @@ const EditBlogPost = () => {
             content: content,
             thumbnailImage: image,
             category: selectedCategory
-
         })
 
         setTitle("")
@@ -106,11 +100,12 @@ const EditBlogPost = () => {
             <Head>
                 <title>Edit Blog Post</title>
             </Head>
+            <NavbarNew />
+
             {fetching && <h1 className="text-6xl text-white">LOADING </h1>}
             {!fetching && (
 
-                <div className=" max-w-[80vw] ">
-                    <NavbarNew />
+                <div className="max-w-5xl mx-auto">
                     <h1 className="text-center text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl mt-12 mb-12">Edit Blog Post</h1>
 
                     {/* Image input */}
@@ -134,7 +129,7 @@ const EditBlogPost = () => {
                     <RichTextEditor value={content} onChange={setContent} id="rte" />
 
                     {/* Category list */}
-                    <CategorySelect />
+                    <CategorySelect categories={blogCategories} />
 
                     <button className=" w-64  bg-transparent mt-12 text-white py-2 px-4 border border-white rounded" onClick={() => handleCreatePost()}>
                         Update post
