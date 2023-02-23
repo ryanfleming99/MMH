@@ -28,15 +28,15 @@ const admin = () => {
         <Heading title="Paid Content" />
         <div className="grid grid-cols-2 gap-4">
 
-          <button type="submit" className="mx-auto mt-8 w-full h-12 bg-btngray text-black font-bold text-lg py-2 px-4 rounded hover:bg-mainbg hover:border-2 hover:border-white transition ease-in-out delay-50 hover:text-white ">
-            New Content Entry
-          </button>
+          <Link href="admin/createContentEntry">
+            <button type="submit" className="mx-auto mt-8 w-full h-12 bg-btngray text-black font-bold text-lg py-2 px-4 rounded hover:bg-mainbg hover:border-2 hover:border-white transition ease-in-out delay-50 hover:text-white ">
+              New Content Entry
+            </button>
+          </Link>
 
           <button type="submit" className="mx-auto mt-8 w-full h-12 bg-btngray text-black font-bold text-lg py-2 px-4 rounded hover:bg-mainbg hover:border-2 hover:border-white transition ease-in-out delay-50 hover:text-white ">
             Edit/Delete Content
           </button>
-
-
         </div>
       </div>
     </div>

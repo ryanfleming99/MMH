@@ -1,9 +1,9 @@
 import { useState, Fragment } from 'react'
 import { useRecoilState } from "recoil"
-import { modalStatus } from "../atoms/isModalOpen"
+import { modalStatus } from "../../atoms/isModalOpen"
 import { Dialog, Transition } from '@headlessui/react'
 import { doc, deleteDoc } from "firebase/firestore";
-import { firestore, auth } from "../lib/firebase/firebase"
+import { firestore, auth } from "../../lib/firebase/firebase"
 import { useRouter } from "next/router";
 
 

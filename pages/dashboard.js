@@ -9,7 +9,6 @@ import parse from 'html-react-parser';
 import DOMPurify from "dompurify";
 import Link from "next/link"
 import NavbarNew from "../components/NavbarNew"
-import Navbar from "../components/Navbar"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import coloseum from "../content/coloseum4.png"
@@ -34,7 +33,7 @@ function Dashboard() {
 
 
     return (
-        <div className="mx-auto max-w-screen p-3 bg-mainbg text-white min-h-screen">
+        <div className="mx-auto max-w-screen bg-mainbg text-white min-h-screen">
             <Head>
                 <title>Dashboard</title>
             </Head>
@@ -49,16 +48,16 @@ function Dashboard() {
                 {/* Content categories grid */}
                 <motion.div layout className="grid gap-4 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-12 items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300">
 
-                    {postCategories.map(post => {
+                    {postCategories.map(category => {
                         return (
                             <motion.div layout animate={{ opacity: 1 }}
                                 initial={{ opacity: 0 }}
                                 exit={{ opacitiy: 0 }}
-                                className="relative" key={post.id}>
-                                <Link href={`/posts/${post.id}`}>
-                                    <img className="w-full h-52 mx-auto object-cover" src={post.image} width={200} height={200} />
+                                className="relative" key={category.id}>
+                                <Link href={`/content/${category.name.toLowerCase()}`}>
+                                    <img className="w-full h-52 mx-auto object-cover" src={category.image} width={200} height={200} />
                                     <div className="absolute inset-0 bg-black bg-opacity-50 "></div>
-                                    <h3 className="text-white text-center font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">{post.name}</h3>
+                                    <h3 className="text-white text-center font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">{category.name}</h3>
 
                                 </Link>
                             </motion.div>

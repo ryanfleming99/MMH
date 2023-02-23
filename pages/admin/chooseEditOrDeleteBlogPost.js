@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 import { Dialog, Transition } from '@headlessui/react'
 import { useRecoilState } from "recoil"
 import { modalStatus } from "../../atoms/isModalOpen"
-import DeletePostModal from "../../components/DeletePostModal"
+import DeletePostModal from "../../components/admin/DeletePostModal"
 
 
 function EditOrDeleteBlogPost() {
@@ -93,14 +93,11 @@ function EditOrDeleteBlogPost() {
                                     {/* <article className="prose mx-auto text-white">{parse(DOMPurify.sanitize(post.content))}</article> */}
                                 </div>
                                 <div className="grid grid-cols-2 gap-4 mt-4 mb-8">
-                                    <Link href={`/admin/edit/${post.id}`}>
+                                    <Link href={`/admin/editBlog/${post.id}`}>
                                         <button type="submit" className="mx-auto w-full h-12 bg-btngray text-black font-bold text-lg py-2 px-4 rounded hover:bg-mainbg hover:border-2 hover:border-white transition ease-in-out delay-50 hover:text-white ">
                                             Edit
                                         </button>
                                     </Link>
-
-
-
                                     <DeletePostModal postId={post.id} />
                                 </div>
                             </motion.div>
