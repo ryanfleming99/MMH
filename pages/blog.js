@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import HeroHeading from "../components/Typography/HeroHeading"
 import Head from "next/head"
 import { firestore } from "../lib/firebase/firebase"
-import { doc, getDocs, collection } from "firebase/firestore"
+import { doc, getDocs, collection, query } from "firebase/firestore"
 import { isAssertEntry } from "typescript"
 import { querystring } from "@firebase/util"
 import parse from 'html-react-parser';
@@ -10,9 +10,29 @@ import DOMPurify from "dompurify";
 import Link from "next/link"
 import NavbarNew from "../components/NavbarNew"
 import { motion } from "framer-motion"
+import safeJsonStringify from "safe-json-stringify"
 
 
-function blog() {
+export async function getServerSideProps(context) {
+    console.log(firestore)
+
+    const res = await getDocs(collection(firestore, "posts"))
+
+    const docsData = res.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+
+    console.log(res)
+
+    return {
+        props: {
+            postsArray: JSON.parse(safeJsonStringify(docsData))
+        },
+    }
+
+}
+
+
+
+function blog({ pageProps: { postsArray } }) {
 
     const postCategories = [
         { id: 0, name: "All" },
@@ -23,23 +43,25 @@ function blog() {
         { id: 5, name: "Social" },
     ]
 
-    const [posts, setPosts] = useState([])
-    const [filtered, setFiltered] = useState([])
+    const [posts, setPosts] = useState(postsArray)
+    const [filtered, setFiltered] = useState(postsArray)
     const [filterCategory, setFilterCategory] = useState(0)
+    console.log(postsArray)
 
-
-    const getPosts = async () => {
-        const querySnapshot = await getDocs(collection(firestore, "posts"))
-        const postsResult = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-        setPosts(postsResult)
-        setFiltered(postsResult)
-        console.log(postsResult)
-    }
+    // const getPosts = async () => {
+    //     const querySnapshot = await getDocs(collection(firestore, "posts"))
+    //     const postsResult = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    //     setPosts(postsResult)
+    //     setFiltered(postsResult)
+    //     console.log(postsResult)
+    // }
 
 
 
     useEffect(() => {
-        getPosts()
+        // getPosts()
+        setPosts(postsArray)
+        setFiltered(postsArray)
     }, [])
 
     useEffect(() => {
