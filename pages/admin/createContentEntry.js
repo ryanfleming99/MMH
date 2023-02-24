@@ -43,7 +43,7 @@ const CreateContentEntry = () => {
     const selectedCategory = useRecoilValue(blogCat)
     const selectedTier = useRecoilValue(contentTier)
     const [affProducts, setAffProducts] = useState([
-        { name: "", productLink: "", imageLink: "" }
+        { name: "", description: "", productLink: "", imageLink: "", }
     ])
 
 
@@ -151,6 +151,7 @@ const CreateContentEntry = () => {
                 {affProducts.map((product, id) => (
                     <div key={id} className=" mt-4 text-2xl border-2 border-gray-400 rounded-lg p-4">
 
+                        {/* ---------------Product Name--------------- */}
                         <label className="block text-white font-bold md:text-left mb-1 pr-4" htmlFor="inline-full-name">
                             Product Name
                         </label>
@@ -160,6 +161,15 @@ const CreateContentEntry = () => {
                             value={product.name}
                             onChange={(event) => handleFormChange(event, id)} />
 
+                        {/* ---------------Product Description--------------- */}
+                        <label className="block text-white font-bold md:text-left mb-1 pr-4" htmlFor="inline-full-name">
+                            Product Description
+                        </label>
+                        <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text"
+                            name="description"
+                            onChange={(event) => handleFormChange(event, id)} />
+
+                        {/* ---------------Product Link--------------- */}
                         <label className="block text-white font-bold md:text-left mb-1 pr-4" htmlFor="inline-full-name">
                             Product Link
                         </label>
@@ -167,12 +177,15 @@ const CreateContentEntry = () => {
                             name="productLink"
                             onChange={(event) => handleFormChange(event, id)} />
 
+                        {/* ---------------Image Link--------------- */}
                         <label className="block text-white font-bold md:text-left mb-1 pr-4" htmlFor="inline-full-name">
                             Image Link
                         </label>
                         <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text"
                             name="imageLink"
                             onChange={(event) => handleFormChange(event, id)} />
+
+
                         <button type="button" className=" block w-62  bg-transparent mt-4 text-white text-lg py-1 px-4 border border-white rounded" onClick={() => handleRemoveProduct(id)}>
                             Remove product
                         </button>
