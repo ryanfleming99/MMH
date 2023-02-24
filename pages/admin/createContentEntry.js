@@ -107,7 +107,7 @@ const CreateContentEntry = () => {
         setTitle("")
         setContent("")
         setImage("")
-        setAffProducts([{ name: "", productLink: "", imageLink: "" }])
+        setAffProducts([])
         setLoading(false)
     }
 
