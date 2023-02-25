@@ -28,7 +28,7 @@
     "heroicons": "^2.0.14",
     "html-react-parser": "^3.0.8",
     "isomorphic-dompurify": "^0.26.0",
-    "next": "13.0.7",
+    "next": "^13.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",

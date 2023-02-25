@@ -5,24 +5,28 @@ import { firestore } from "../lib/firebase/firebase.js"
 import { motion } from "framer-motion"
 import Spinner from "../components/Spinner"
 import Navbar from "../components/NavbarNew"
+import safeJsonStringify from "safe-json-stringify"
+
+
+
 
 const pricing = () => {
 
 
-
     const [products, setProducts] = useState([])
     const [fetching, setFetching] = useState(false)
+    console.log(products)
 
 
     const getProducts = async () => {
-        const productsObj = {}
 
         const querySnapshot = await getDocs(collection(firestore, "products"))
+        const productsObj = {}
         querySnapshot.docs.forEach(async doc => {
             productsObj[doc.id] = doc.data()
 
             const pricesSnap = await getDocs(collection(firestore, "products", doc.id, "prices"))
-            pricesSnap.docs.forEach(price => {
+            pricesSnap.docs.forEach(async price => {
                 productsObj[doc.id].prices = {
                     priceId: price.id,
                     priceData: price.data()
@@ -31,7 +35,6 @@ const pricing = () => {
             setProducts(productsObj)
         })
 
-        console.log(productsObj)
     }
 
     useEffect(() => {
@@ -39,10 +42,9 @@ const pricing = () => {
         const fetchProducts = async () => {
 
             await getProducts()
-            setFetching(false)
         }
-
         fetchProducts()
+        setFetching(false)
     }, [])
 
 
@@ -78,16 +80,18 @@ const pricing = () => {
                             return (<PricingCard key={tier.name} name={tier.name} price={tier.price} url={tier.url} features={tier.features} />)
                         })} */}
                         {fetching && (<div className="flex justify-center"><Spinner /></div>)}
-                        {Object.keys(products).length > 2 && !fetching && Object.entries(products).map(([id, data]) => {
+                        {Object.entries(products).map(([id, data]) => {
                             // console.log("DATA", data.prices.priceData)
                             return (
                                 <PricingCard
                                     productData={data}
                                     key={data.name}
                                     name={data.name}
-                                    price={data.prices?.priceData?.unit_amount}
+                                    price={isNaN(data.prices?.priceData.unit_amount) ? getProducts() : data.prices?.priceData.unit_amount}
                                     url={""}
-                                    features={data.description} />)
+                                    features={data.description} />
+                                // <p>HI</p>
+                            )
 
                         })}
 
