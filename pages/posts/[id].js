@@ -25,7 +25,7 @@ export async function getServerSideProps(context) {
 
 
 
-const index = ({ pageProps: { post } }) => {
+const PostPage = ({ pageProps: { post } }) => {
   console.log(firestore)
 
   // const [post, setPost] = useState([])
@@ -50,11 +50,11 @@ const index = ({ pageProps: { post } }) => {
     <div className=" mx-auto max-w-screen p-3 bg-gray-800 min-h-screen ">
       <h1 className="text-white text-center text-2xl mt-12"> {post.title}</h1>
       <article className="prose mx-auto text-white mt-12">{parse(DOMPurify.sanitize(post.content))}</article>
-      <div>
+      {/* <div className="mx-auto w-8/12 items-center">
         <button className="py-2 px-4 rounded-full bg-orange-400 mx-auto mt-4">{post.category?.name}</button>
-      </div>
+      </div> */}
     </div>
   )
 }
 
-export default index
+export default PostPage

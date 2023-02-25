@@ -1,4 +1,4 @@
-import { collection, setDoc, getDocs, addDoc, doc, onSnapshot, query, orderBy } from "firebase/firestore"
+import { collection, setDoc, getDocs, addDoc, doc, onSnapshot, query, orderBy, where, limit } from "firebase/firestore"
 import { type } from "os"
 import React, { useState, useRef } from 'react'
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth"
@@ -25,7 +25,6 @@ const PricingCard = ({ productData, name, price, url, features }) => {
 
     const loadCheckout = async (priceId) => {
         setLoading(true)
-        setSessionDoc(null)
 
         const userSnap = await addDoc(collection(firestore, "customers", user.uid, "checkout_sessions"), {
 
@@ -35,25 +34,30 @@ const PricingCard = ({ productData, name, price, url, features }) => {
         })
 
 
-        const q = query(collection(firestore, "customers", user.uid, "checkout_sessions"), orderBy("created", "desc"));
-        const unsubscribe = onSnapshot(q, async (querySnapshot) => {
-            const sessions = [];
-            querySnapshot.forEach((doc) => {
-                sessions.push(doc.data());
-            })
-            setSessionDoc(sessions[0])
-            console.log("Current sessions ", sessionDoc);
+        const q = query(collection(firestore, "customers", user.uid, "checkout_sessions"), orderBy("created", "desc"), limit(5));
+        // const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+        //     const sessions = [];
+        //     querySnapshot.forEach((doc) => {
+        //         sessions.push(doc.data());
+        //     })
+        //     setSessionDoc(sessions[0])
+        //     console.log("Current sessions ", sessionDoc);
+        // });
+        const unsubscribe = onSnapshot(userSnap, async (querySnapshot) => {
+            const { error, sessionId } = querySnapshot.data()
+            console.log("SESSSSIOOON", sessionId)
+            if (sessionId) {
+                setLoading(false)
+                const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUB)
+
+                stripe.redirectToCheckout({ sessionId })
+            }
         });
 
 
-        if (sessionDoc) {
-            const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUB)
-            const sessionId = sessionDoc.sessionId
-            stripe.redirectToCheckout({ sessionId })
-        }
-        setLoading(false)
 
-        handleRefClick()
+
+        // handleRefClick()
     }
 
     return (
@@ -328,7 +332,7 @@ const PricingCard = ({ productData, name, price, url, features }) => {
                 </span>
 
                 <h2 className="text-dark mb-5 text-[42px] font-bold">
-                    £{price / 100}
+                    £{!isNaN(price / 100) && parseFloat(price / 100)}
                     <span className="text-body-color text-base font-medium"> / month </span>
                 </h2>
                 <p
