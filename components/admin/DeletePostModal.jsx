@@ -23,9 +23,9 @@ const DeletePostModal = ({ postId }) => {
     const handlePostDelete = async () => {
 
         try {
-            await deleteDoc(doc(firestore, "posts", postId));
+            await deleteDoc(doc(firestore, "content", postId));
             setIsOpen(false)
-            router.reload(window.location.pathname)
+
 
         } catch (error) {
             console.log(error)

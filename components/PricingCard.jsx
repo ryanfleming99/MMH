@@ -15,14 +15,6 @@ const PricingCard = ({ productData, name, price, url, features }) => {
     const [loading, setLoading] = useState(false)
     const checkoutButton = useRef(null)
 
-    const handleRefClick = () => {
-        setTimeout(() => {
-            checkoutButton.current?.click()
-        }, 1200);
-
-    }
-
-
     const loadCheckout = async (priceId) => {
         setLoading(true)
 
@@ -35,14 +27,7 @@ const PricingCard = ({ productData, name, price, url, features }) => {
 
 
         const q = query(collection(firestore, "customers", user.uid, "checkout_sessions"), orderBy("created", "desc"), limit(5));
-        // const unsubscribe = onSnapshot(q, async (querySnapshot) => {
-        //     const sessions = [];
-        //     querySnapshot.forEach((doc) => {
-        //         sessions.push(doc.data());
-        //     })
-        //     setSessionDoc(sessions[0])
-        //     console.log("Current sessions ", sessionDoc);
-        // });
+
         const unsubscribe = onSnapshot(userSnap, async (querySnapshot) => {
             const { error, sessionId } = querySnapshot.data()
             console.log("SESSSSIOOON", sessionId)
@@ -53,11 +38,6 @@ const PricingCard = ({ productData, name, price, url, features }) => {
                 stripe.redirectToCheckout({ sessionId })
             }
         });
-
-
-
-
-        // handleRefClick()
     }
 
     return (
@@ -350,9 +330,7 @@ const PricingCard = ({ productData, name, price, url, features }) => {
                     onClick={() => loadCheckout(productData.prices.priceId)}
                     className="text-primary hover:bg-primary hover:border-primary block w-full rounded-md border border-[#D4DEFF] bg-transparent p-4 text-center text-base font-semibold transition hover:text-white">
                     {loading ? (<div className="flex justify-center"><Spinner /></div>) : `Choose ${name}`}
-
                 </button>
-
             </div>
         </motion.div >
     )

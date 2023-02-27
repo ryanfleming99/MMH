@@ -2,21 +2,26 @@ import React, { useEffect, useState } from 'react';
 import Head from "next/head"
 import dynamic from 'next/dynamic'
 import { v4 as uuidv4 } from 'uuid';
-import { firestore, auth } from "../../lib/firebase/firebase"
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { firestore, auth } from "../../../lib/firebase/firebase"
+import { doc, setDoc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import CategorySelect from "../../components/admin/CategorySelect"
-import ContentTierSelect from "../../components/admin/ContentTierSelect"
-import { useRecoilValue } from "recoil"
-import { blogCat } from "../../atoms/blogCategory";
-import { contentTier } from "../../atoms/contentTier"
-import NavbarNew from "../../components/NavbarNew";
+import CategorySelect from "../../../components/admin/CategorySelect"
+import ContentTierSelect from "../../../components/admin/ContentTierSelect"
+import { useRecoilState, useRecoilValue } from "recoil"
+import { blogCat } from "../../../atoms/blogCategory";
+import { contentTier } from "../../../atoms/contentTier"
+import NavbarNew from "../../../components/NavbarNew";
+import { useRouter } from "next/router";
+import { motion } from "framer-motion"
 
 const RichTextEditor = dynamic(() => import("@mantine/rte"), { ssr: false, loading: () => "Loading" });
 
 
 
-const CreateContentEntry = () => {
+const EditContentEntry = () => {
+
+    const router = useRouter()
+    const { id } = router.query
 
     const contentTiers = [
         { id: 1, name: 'Bronze', unavailable: false },
@@ -36,20 +41,34 @@ const CreateContentEntry = () => {
     const [user, error] = useAuthState(auth);
 
     const [loading, setLoading] = useState(false)
+    const [post, setPost] = useState(null)
     const [image, setImage] = useState("")
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
-    const selectedCategory = useRecoilValue(blogCat)
+    const [selectedCategory, setSelectedCategory] = useRecoilState(blogCat)
     const selectedTier = useRecoilValue(contentTier)
     const [affProducts, setAffProducts] = useState([
         { name: "", description: "", productLink: "", imageLink: "", }
     ])
 
+    const getPost = async () => {
+        const querySnapshot = await getDoc(doc(firestore, "content", id))
+
+        setPost(querySnapshot.data())
+        setTitle(querySnapshot?.data().title)
+        setContent(querySnapshot?.data().content)
+        setImage(querySnapshot?.data().thumbnailImage)
+        setSelectedCategory(querySnapshot.data().category)
+        setAffProducts(querySnapshot.data().affiliateProducts)
+        // console.log(querySnapshot.data().affiliateProducts)
+        console.log(selectedCategory)
+
+    }
 
 
     useEffect(() => {
         console.log(content)
-
+        getPost()
     }, [content, selectedCategory])
 
     useEffect(() => {
@@ -87,18 +106,18 @@ const CreateContentEntry = () => {
         console.log(affProducts)
     }
 
-    const handleCreateContentEntry = async (e) => {
+    const handleEditContentEntry = async (e) => {
         e.preventDefault()
         setLoading(true)
-        const postRef = doc(firestore, "content", uuidv4())
+        const postRef = doc(firestore, "content", id)
         // const postDoc = await getDoc(postRef)
 
-        await setDoc(postRef, {
+        await updateDoc(postRef, {
             creator: user.uid,
             thumbnailImage: image,
             title: title,
             content: content,
-            category: selectedCategory.name,
+            category: selectedCategory,
             tier: selectedTier.name,
             affiliateProducts: affProducts,
             createdAt: serverTimestamp(),
@@ -114,11 +133,11 @@ const CreateContentEntry = () => {
     return (
         <div className=" grid  min-h-screen pb-4 bg-mainbg justify-center z-0">
             <Head>
-                <title>Create Content Entry</title>
+                <title>Edit Content Entry</title>
             </Head>
             <NavbarNew />
             <div className=" max-w-5xl mx-auto ">
-                <h1 className="text-center text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl mt-12 mb-12">Create Content Entry</h1>
+                <h1 className="text-center text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl mt-12 mb-12">Edit Content Entry</h1>
 
                 {/* Image input */}
                 <label className="block text-white text-2xl font-bold md:text-left  md:mb-0 pr-4" htmlFor="inline-full-name">
@@ -149,7 +168,12 @@ const CreateContentEntry = () => {
                 <h2 className="block text-white text-3xl font-bold md:text-left mb-1 md:mb-0 pr-4">Product Links</h2>
 
                 {affProducts.map((product, id) => (
-                    <div key={id} className=" mt-4 text-2xl border-2 border-gray-400 rounded-lg p-4">
+                    <motion.div layout
+                        animate={{ opacity: 1 }}
+                        initial={{ opacity: 0 }}
+                        exit={{ opacitiy: 0 }}
+                        key={id}
+                        className=" mt-4 text-2xl border-2 border-gray-400 rounded-lg p-4">
 
                         {/* ---------------Product Name--------------- */}
                         <label className="block text-white font-bold md:text-left mb-1 pr-4" htmlFor="inline-full-name">
@@ -167,6 +191,7 @@ const CreateContentEntry = () => {
                         </label>
                         <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text"
                             name="description"
+                            value={product.description}
                             onChange={(event) => handleFormChange(event, id)} />
 
                         {/* ---------------Product Link--------------- */}
@@ -175,6 +200,7 @@ const CreateContentEntry = () => {
                         </label>
                         <input className="bg-gray-200 appearance-none border-2 mb-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text"
                             name="productLink"
+                            value={product.productLink}
                             onChange={(event) => handleFormChange(event, id)} />
 
                         {/* ---------------Image Link--------------- */}
@@ -183,6 +209,7 @@ const CreateContentEntry = () => {
                         </label>
                         <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text"
                             name="imageLink"
+                            value={product.imageLink}
                             onChange={(event) => handleFormChange(event, id)} />
 
 
@@ -190,14 +217,14 @@ const CreateContentEntry = () => {
                             Remove product
                         </button>
 
-                    </div>
+                    </motion.div>
                 ))}
                 <button type="button" className=" block w-48  bg-transparent mt-4 text-white py-2 px-4 border border-white rounded" onClick={(e) => handleAddProduct(e)}>
                     Add another product
                 </button>
 
-                <button className=" w-64 bg-transparent mt-12 text-white py-2 px-4 border border-white rounded" onClick={(e) => handleCreateContentEntry(e)}>
-                    {loading ? "Loading" : "Create Entry"}
+                <button className=" w-64 bg-transparent mt-12 text-white py-2 px-4 border border-white rounded" onClick={(e) => handleEditContentEntry(e)}>
+                    {loading ? "Loading" : "Update Entry"}
                 </button>
 
             </div>
@@ -205,4 +232,4 @@ const CreateContentEntry = () => {
     )
 }
 
-export default CreateContentEntry
+export default EditContentEntry

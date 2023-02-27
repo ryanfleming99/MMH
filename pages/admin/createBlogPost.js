@@ -28,7 +28,6 @@ const CreateBlogPost = () => {
 
 
     const [user, loading, error] = useAuthState(auth);
-    console.log(user)
 
     const [image, setImage] = useState("")
     const [title, setTitle] = useState("")
