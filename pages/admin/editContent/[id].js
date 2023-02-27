@@ -37,7 +37,6 @@ const EditContentEntry = () => {
         { id: 5, name: 'Social', unavailable: false },
     ]
 
-
     const [user, error] = useAuthState(auth);
 
     const [loading, setLoading] = useState(false)
@@ -60,8 +59,7 @@ const EditContentEntry = () => {
         setImage(querySnapshot?.data().thumbnailImage)
         setSelectedCategory(querySnapshot.data().category)
         setAffProducts(querySnapshot.data().affiliateProducts)
-        // console.log(querySnapshot.data().affiliateProducts)
-        console.log(selectedCategory)
+        console.log("CATEGORRRYYYYY AIDSSS", selectedCategory)
 
     }
 
@@ -69,10 +67,10 @@ const EditContentEntry = () => {
     useEffect(() => {
         console.log(content)
         getPost()
-    }, [content, selectedCategory])
+    }, [])
 
-    useEffect(() => {
-    }, [affProducts])
+
+
 
     const onSelectImage = (event) => {
 

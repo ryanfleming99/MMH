@@ -15,8 +15,8 @@ const CategorySelect = ({ categories }) => {
     useEffect(() => {
         setBlogCategories(categories)
 
-
-    }, [categories])
+        console.log(selectedCategory)
+    }, [categories, selectedCategory])
 
 
 

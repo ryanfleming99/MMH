@@ -8,8 +8,14 @@ import { contentCatEdit } from "../../atoms/contentCategoryEdit"
 const ContentCategoryEdit = ({ categories }) => {
 
 
-    const [selectedCategory, setSelectedCategory] = useRecoilState(contentCatEdit)
-    const [contentCategories, setContentCategories] = useState(categories)
+    const [selectedContentCat, setSelectedContentCat] = useRecoilState(contentCatEdit)
+    const [contentCategories, setContentCategories] = useState([])
+
+    useEffect(() => {
+        setContentCategories(categories)
+
+        console.log("SELECTEDDDD", selectedContentCat)
+    }, [categories])
 
 
 
@@ -18,10 +24,10 @@ const ContentCategoryEdit = ({ categories }) => {
             <h1 className="block text-white text-center text-2xl font-bold mb-4 pr-4" htmlFor="inline-full-name">
                 Content Category
             </h1>
-            <Listbox as="div" value={selectedCategory} onChange={setSelectedCategory}>
+            <Listbox as="div" value={selectedContentCat} onChange={setSelectedContentCat}>
                 <div className="relative mt-1">
                     <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                        <span className="block truncate">{selectedCategory.name}</span>
+                        <span className="block truncate">{selectedContentCat.name}</span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <ChevronUpDownIcon
                                 className="h-5 w-5 text-gray-400"

@@ -49,16 +49,12 @@ const EditBlogPost = () => {
         setSelectedCategory(querySnapshot.data().category)
 
         setFetching(false)
+        console.log("CATEGORYYYY BLOG", selectedCategory)
     }
 
     useEffect(() => {
         if (id) {
-            const fetchPost = async () => {
-
-                setFetching(true)
-                await getPost()
-            }
-            fetchPost()
+            getPost()
         }
     }, [])
 

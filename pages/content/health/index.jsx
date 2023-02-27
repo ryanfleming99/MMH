@@ -15,7 +15,7 @@ export async function getServerSideProps(context) {
 
 
 
-    const querySnapshot = await getDocs(query(collection(firestore, "content"), where("category", "==", categoryName)))
+    const querySnapshot = await getDocs(query(collection(firestore, "content"), where("category.name", "==", categoryName)))
     const postsResult = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
 
     console.log(postsResult)
