@@ -42,7 +42,7 @@ const contentPost = ({ posts, category }) => {
                                 <Link href={`/content/${category.toLowerCase()}/${post.id}`}>
                                     <img className="w-full h-52 mx-auto object-cover" src={post.thumbnailImage} />
                                     <div className="absolute inset-0 bg-black bg-opacity-60 "></div>
-                                    <h3 className="text-white text-center font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">{post.title}</h3>
+                                    <h3 className="text-white text-center font-semibold text-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">{post.title}</h3>
                                 </Link>
                             </motion.div>
                         )

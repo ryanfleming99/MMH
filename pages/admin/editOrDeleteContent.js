@@ -10,11 +10,11 @@ import Spinner from "../../components/Spinner"
 const editOrDeleteContent = () => {
 
   const postCategories = [
-    { id: 1, name: "Health" },
-    { id: 2, name: "Exercise" },
-    { id: 3, name: "Work" },
-    { id: 4, name: "Dating" },
-    { id: 5, name: "Social" },
+    { id: 1, name: "Health", unavailable: false },
+    { id: 2, name: "Exercise", unavailable: false },
+    { id: 3, name: "Work", unavailable: false },
+    { id: 4, name: "Dating", unavailable: false },
+    { id: 5, name: "Social", unavailable: false },
 
   ]
 
@@ -25,7 +25,7 @@ const editOrDeleteContent = () => {
 
   const fetchPosts = async () => {
     setLoading(true)
-    const querySnapshot = await getDocs(query(collection(firestore, "content"), where("category", "==", selectedCategory.name)))
+    const querySnapshot = await getDocs(query(collection(firestore, "content"), where("category.name", "==", selectedCategory.name)))
     const postsResult = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
     setLoading(false)
     setPosts(postsResult)

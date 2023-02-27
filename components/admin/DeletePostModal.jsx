@@ -26,7 +26,6 @@ const DeletePostModal = ({ postId }) => {
             await deleteDoc(doc(firestore, "content", postId));
             setIsOpen(false)
 
-
         } catch (error) {
             console.log(error)
         }

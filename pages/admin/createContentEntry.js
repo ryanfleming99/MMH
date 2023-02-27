@@ -98,7 +98,7 @@ const CreateContentEntry = () => {
             thumbnailImage: image,
             title: title,
             content: content,
-            category: selectedCategory.name,
+            category: selectedCategory,
             tier: selectedTier.name,
             affiliateProducts: affProducts,
             createdAt: serverTimestamp(),

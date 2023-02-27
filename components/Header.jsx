@@ -6,7 +6,11 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 
 const inter = Inter({ subsets: ["latin"] });
+
+
+
 const Header = () => {
+
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-6 min-h-screen md:h-content w-full md:w-10/12 mx-auto text-center items-center">
 
@@ -35,25 +39,26 @@ const Header = () => {
             <motion.div animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 initial={{ opacity: 0, x: 200 }}
-                className="mx-auto hidden lg:block ">
-                <div className="absolute translate-x-12 translate-y-24">
+                className="mx-auto hidden lg:block group ">
+
+                <div className="absolute translate-x-24 translate-y-32 group-hover:rotate-12 group-hover:translate-x-16 group-hover:translate-y-40  transition-all ease-in-out">
                     <Image src="/boxing.jpg " width={350} height={350} alt="boxing image" />
                 </div>
-                <div className="absolute ">
+
+                <div className="absolute group-hover:-rotate-12 transition-all ease-in-out group-hover:-translate-x-18 group-hover:-translate-y-10 ">
                     <Image src="/rain.jpg " width={350} height={350} alt="raining backdrop" />
 
                 </div>
-                <div className="absolute translate-y-12 translate-x-40">
+                <div className="absolute translate-y-12 translate-x-52 group-hover:rotate-12 transition-all ease-in-out group-hover:translate-y-20 group-hover:translate-x-60">
                     <Image src="/chart.jpg " width={350} height={350} alt="mobile phone showing trading chart" />
                 </div>
-                <div className="absolute -translate-y-36 translate-x-36">
+                <div className="absolute -translate-y-48 translate-x-48 group-hover:rotate-12 transition-all ease-in-out group-hover:translate-x-56 group-hover:-translate-y-56">
                     <Image src="/forest.jpg " width={350} height={350} alt="snow covered forest" />
 
                 </div>
 
-                <div className="-translate-y-20 translate-x-20">
+                <div className="-translate-y-20 translate-x-16 group-hover:-rotate-12 transition-all ease-in-out group-hover:translate-x-8 group-hover:-translate-y-40">
                     <Image src="/sunset.jpg " width={350} height={350} alt="sunset overlooking a city" />
-
                 </div>
 
 
