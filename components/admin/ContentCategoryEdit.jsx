@@ -3,28 +3,21 @@ import { useState, Fragment } from "react"
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { useRecoilState } from "recoil"
-import { blogCat } from "../../atoms/blogCategory"
+import { contentCatEdit } from "../../atoms/contentCategoryEdit"
 
-const CategorySelect = ({ categories }) => {
-
-
-    const [selectedCategory, setSelectedCategory] = useRecoilState(blogCat)
-    const [blogCategories, setBlogCategories] = useState(categories)
+const ContentCategoryEdit = ({ categories }) => {
 
 
-    useEffect(() => {
-        setBlogCategories(categories)
-
-
-    }, [categories])
+    const [selectedCategory, setSelectedCategory] = useRecoilState(contentCatEdit)
+    const [contentCategories, setContentCategories] = useState(categories)
 
 
 
     return (
-        <div className="w-1/3 mt-4 text-black">
-            <label className="block text-white text-2xl font-bold md:text-left  md:mb-0 pr-4" htmlFor="inline-full-name">
-                Category
-            </label>
+        <div className="w-1/3 mt-4 text-black mx-auto">
+            <h1 className="block text-white text-center text-2xl font-bold mb-4 pr-4" htmlFor="inline-full-name">
+                Content Category
+            </h1>
             <Listbox as="div" value={selectedCategory} onChange={setSelectedCategory}>
                 <div className="relative mt-1">
                     <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
@@ -42,8 +35,8 @@ const CategorySelect = ({ categories }) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Listbox.Options className="absolute z-10 overflow-y-auto mt-1 max-h-60 w-full rounded-md bg-white py-1 text-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                            {blogCategories?.map((category, categoryIdx) => (
+                        <Listbox.Options className="z-10 overflow-y-auto mt-1 max-h-60 w-full rounded-md bg-white py-1 text-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            {contentCategories?.map((category, categoryIdx) => (
                                 <Listbox.Option
                                     key={categoryIdx}
                                     className={({ active }) =>
@@ -77,4 +70,4 @@ const CategorySelect = ({ categories }) => {
     )
 }
 
-export default CategorySelect
+export default ContentCategoryEdit

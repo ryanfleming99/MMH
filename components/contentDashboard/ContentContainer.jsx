@@ -26,10 +26,13 @@ const contentPost = ({ posts, category }) => {
     return (
         <div className="mx-auto max-w-screen bg-mainbg text-white min-h-screen">
             <div className="mx-auto max-w-6xl bg-mainbg">
-                <h1 className="pt-12 text-center text-white font-bold text-5xl lg:text-6xl md:text-5xl "> {category} Articles</h1>
-                <p className="text-gray-300 text-center pt-12 mx-auto w-4/5 lg:w-3/5">Lorem ipsum dolor sit amet consectetur. Senectus quam viverra orci sed sed turpis in cursus. A tempor faucibus arcu lacus porta auctor tempus id purus.</p>
-                <motion.div layout className="grid gap-4 lg:grid-cols-4  sm:grid-cols-1 mt-12 justify-center items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300">
+                <div>
+                    <h1 className="pt-12 text-center text-white font-bold text-5xl lg:text-6xl md:text-5xl "> {category} Articles</h1>
+                    <p className="text-gray-300 text-center pt-12 mx-auto w-4/5 lg:w-3/5">Lorem ipsum dolor sit amet consectetur. Senectus quam viverra orci sed sed turpis in cursus. A tempor faucibus arcu lacus porta auctor tempus id purus.</p>
+                </div>
 
+
+                <motion.div layout className="grid gap-4 lg:grid-cols-4  sm:grid-cols-1 mt-12 justify-center items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300">
                     {posts?.map(post => {
                         return (
                             <motion.div layout animate={{ opacity: 1 }}

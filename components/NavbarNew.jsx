@@ -33,7 +33,6 @@ export default function NavbarNew() {
 
     const [user, loading, error] = useAuthState(auth)
     const [signOut] = useSignOut(auth);
-    console.log(user)
     console.log(router.pathname)
 
     return (
