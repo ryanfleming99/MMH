@@ -6,7 +6,7 @@ import HeroHeading from "../components/Typography/HeroHeading";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const CategoryHero = ({ title, content1, content2, content3 }) => {
+const CategoryHero = ({ title, content1, content2, content3, bg }) => {
   return (
     <section style={{ background: `url(${content3})` }}>
       {/* Navbar End */}

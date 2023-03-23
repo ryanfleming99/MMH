@@ -31,23 +31,33 @@ const index = ({ id }) => {
     return (
         <div className=" mx-auto max-w-screen p-3 lg:px bg-gray-800 min-h-screen ">
             {/* <h1 className="text-white text-center text-2xl mt-12"> {post.title}</h1> */}
-            <article className="prose mx-auto text-white prose-li:marker:text-white prose-h1:text-white prose-h2:text-white prose-h3:text-white prose-h4:text-white mt-12">{parse(DOMPurify.sanitize(post.content))}</article>
+            {post.thumbnailImage && (
+                <div className="w-11/12 lg:w-1/2 mx-auto">
+                    <img src={post.thumbnailImage} className=" mx-auto object-cover w-[600px] h-[300px]" alt="Article header image" />
+                </div>
+
+            )}
+
+            <article className="prose max-w-3xl mx-auto text-white prose-li:marker:text-white prose-h1:text-white prose-h2:text-white prose-h3:text-white prose-h4:text-white mt-12">{parse(DOMPurify.sanitize(post.content))}</article>
 
             {/* -------------------Affiliate Links------------------------ */}
             {!post.affiliateProducts && (<div className="flex w-screen h-screen justify-center items-center"><Spinner /></div>)}
             {post?.affiliateProducts && (
                 <div>
                     <hr className="h-[2px] my-8 bg-gray-200 border-0 w-full lg:w-8/12 mx-auto dark:bg-gray-700" />
-                    <h3 className="lg:w-8/12 mx-auto font-semibold text-2xl text-center">Affiliate links</h3>
+                    <h3 className="lg:w-7/12 mx-auto font-semibold text-2xl text-center">Affiliate links</h3>
                 </div>)}
-            <div className="grid grid-cols-2 mx-auto w-full lg:w-1/2 items-center mt-12">
-                {post.affiliateProducts?.map(product => (
-                    <div key={uuidv4()} className="mx-auto">
-                        <Link href={product.productLink}>
-                            <h3 className="text-center font-semibold text-xl">{product.name}</h3>
-                            <img className="mx-auto rounded-lg h-[150px] w-[150px] lg:h-[250px] lg:w-[250px]" src={product.imageLink} alt="" />
-                        </Link>
-                    </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mx-auto w-full lg:w-1/2 items-center mt-12">
+                {post.affiliateProducts?.map((product, i) => (
+                    <Link key={i} href={product.productLink}>
+                        <div key={uuidv4()} className="mx-auto flex flex-row items-center">
+                            <img className="mx-auto rounded-lg object-cover h-[150px] w-[150px] lg:h-[150px] lg:w-[180px]" src={product.imageLink} alt="" />
+                            <div>
+                                <h3 className="text-left pl-2 font-semibold w-full text-xl">{product.name}</h3>
+                                <p className="text-lg text-left pl-2 mt-3 line-clamp-3">{product.description}</p>
+                            </div>
+                        </div>
+                    </Link>
                 ))}
             </div>
 

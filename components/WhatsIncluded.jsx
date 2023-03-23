@@ -7,20 +7,8 @@ import { motion } from "framer-motion"
 
 const WhatsIncluded = () => {
 
-    const container = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            whileInView: {
-                staggerChildren: 0.2
-            }
-        }
-    }
 
-    const item = {
-        hidden: { opacity: 0 },
-        show: { opacity: 1 }
-    }
+
     return (
         <div className="bg-mainbg md:w-4/5 mx-auto mt-12 min-h-screen">
             <SubHeading title="Wellness resources for your mind and body" />
@@ -28,7 +16,9 @@ const WhatsIncluded = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true }}
-                className="mt-12 w-4/5 lg:w-1/3 mx-auto text-center text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi non, quibusdam voluptatum excepturi commodi, hic architecto quos culpa molestias quasi nobis vel explicabo reiciendis repellat tenetur velit quis provident.</motion.p>
+                className="mt-12 w-4/5 lg:w-1/3 mx-auto text-center text-white">
+
+            </motion.p>
 
             <motion.div initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -39,7 +29,8 @@ const WhatsIncluded = () => {
                 <motion.div initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.7 }}
-                    viewport={{ once: true }} className="lg:order-1 sm:order-1">
+                    viewport={{ once: true }}
+                    className="lg:order-1 sm:order-1">
                     <div className={styles.exercise}>
                         <div className="flex text-center w-3/4 mx-auto h-full">
                             <TransparentHeader text="Exercise" />
@@ -52,7 +43,8 @@ const WhatsIncluded = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.7 }}
                     viewport={{ once: true }} className="lg:order-2 sm:order-2 my-auto lg:px-10 ">
-                    Lorem1 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
+                    Exercise plans tailored to your needs, whether you're just starting out, looking for more variety in your workouts,
+                    or trying to master your discipline, we'll help you along the way.
                 </motion.div>
 
                 {/* Health */}
@@ -73,8 +65,7 @@ const WhatsIncluded = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.7 }}
                     viewport={{ once: true }} className="lg:order-3 sm:order-4 my-auto lg:px-10">
-                    Lorem2 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
-
+                    Our diet plans and meal recipes enable you to optimise for your nutritional needs and dietary preferences.  High carb, keto, veggie or vegan, we've got you covered.
                 </motion.div>
 
                 {/* Relationship */}
@@ -94,7 +85,9 @@ const WhatsIncluded = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.7 }}
                     viewport={{ once: true }} className="lg:order-6 sm:order-6 my-auto lg:px-10">
-                    Lorem3 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
+
+                    Interpersonal connections can be tricky, especially when most of our time is spent interacting with people virtually.
+                    We're here to give you the confidence you deserve so you no longer feel like an outsider.
 
                 </motion.div>
 
@@ -116,8 +109,8 @@ const WhatsIncluded = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.7 }}
                     viewport={{ once: true }} className="lg:order-7 sm:order-8 my-auto lg:px-10">
-                    Lorem4 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
-
+                    You can take your career to the next level with our guidance.
+                    If you're getting your first job or progressing to a different position, we can help you get there.
                 </motion.div>
 
 
@@ -140,8 +133,8 @@ const WhatsIncluded = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.7 }}
                     viewport={{ once: true }} className="lg:order-10 sm:order-10 my-auto lg:px-10">
-                    Lorem5 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
-
+                    Your mindset is the foundation of the identity you adopt, ultimately determining your life path.
+                    We'll enable your to make the right choices through our easy to follow system, you no longer have to face every challenge by yourself.
                 </motion.div>
 
                 {/* Socialising */}
@@ -162,8 +155,8 @@ const WhatsIncluded = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.7 }}
                     viewport={{ once: true }} className=" lg:order-11 sm:order-12 my-auto lg:px-10">
-                    Lorem6 ipsum dolor sit amet, consectetur adipisicing elit. Autem reprehenderit delectus nostrum sapiente asperiores? Eum perspiciatis inventore debitis neque saepe
-
+                    Our community consists of like minded men from all walks of life overcome adversities by supporting each other.
+                    Join us and find out for yourself.
                 </motion.div>
             </motion.div>
             <SignUp />
