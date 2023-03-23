@@ -9,7 +9,8 @@ import { Sign } from "crypto";
 import WhatsIncluded from "../components/WhatsIncluded.jsx"
 import Footer from "../components/Footer"
 import NavbarNew from "../components/NavbarNew";
-
+import OurMission from "../components/OurMission"
+import TheProcess from "../components/TheProcess"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,8 @@ export default function Home() {
       </Head>
       <NavbarNew />
       <Header />
-      {/* <Pillars /> */}
+      <OurMission />
+      <TheProcess />
       <WhatsIncluded />
       <Footer />
     </main>

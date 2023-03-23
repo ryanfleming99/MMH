@@ -33,7 +33,7 @@ function Dashboard() {
 
 
     return (
-        <div className="mx-auto max-w-screen bg-mainbg text-white min-h-screen">
+        <div className="mx-auto max-w-screen pb-2 bg-mainbg text-white min-h-screen">
             <Head>
                 <title>Dashboard</title>
             </Head>

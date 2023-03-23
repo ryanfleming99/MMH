@@ -19,8 +19,8 @@ const Header = () => {
                 initial={{ opacity: 0, x: -200 }}
                 className="">
                 <div className="flex flex-col">
-                    <h1 className="text-white font-bold text-4xl lg:text-5xl">
-                        Empowering Men's Mental Health
+                    <h1 className="text-white font-bold text-4xl lg:text-7xl">
+                        Empowering Men&apos;s Mental Health
                     </h1>
                     <br />
                     <h2 className="text-white my-2 text-base">
@@ -29,7 +29,7 @@ const Header = () => {
                     <br />
                     <button
                         type="button"
-                        className="border mx-auto sm:max-w-sm lg:max-w-lg sm:text-xl md:max-w-md font-semibold py-4 px-24  border-gray-200 bg-btngray text-gray-700 rounded-md  transition duration-500 ease select-none hover:bg-gray-300 focus:outline-none focus:shadow-outline"
+                        className="border mx-auto sm:max-w-sm lg:max-w-lg sm:text-xl md:max-w-md font-semibold py-4 px-24  border-gray-200 bg-btngray text-gray-700 rounded-md  transition duration-500 ease select-none hover:bg-gray-300 hover:scale-110 focus:scale-90 focus:outline-none focus:shadow-outline"
                     >
                         Learn More
                     </button>

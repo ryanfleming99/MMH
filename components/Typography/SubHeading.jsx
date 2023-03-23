@@ -6,7 +6,7 @@ const SubHeading = ({ title }) => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="mt-12 text-center font-bold text-white text-3xl lg:text-4xl ">
+            className="mt-12 text-center font-bold text-white text-3xl lg:text-6xl ">
             {title}
         </motion.h3>
     )

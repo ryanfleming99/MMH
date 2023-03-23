@@ -59,7 +59,7 @@ const EditContentEntry = () => {
         setImage(querySnapshot?.data().thumbnailImage)
         setSelectedCategory(querySnapshot.data().category)
         setAffProducts(querySnapshot.data().affiliateProducts)
-        console.log("CATEGORRRYYYYY AIDSSS", selectedCategory)
+        console.log("SELECTED", selectedCategory)
 
     }
 
