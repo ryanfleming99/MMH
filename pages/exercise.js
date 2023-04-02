@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import HeroHeading from "../components/Typography/HeroHeading.jsx";
 import SubHeading from "../components/Typography/SubHeading.jsx";
+import SignUp from "../components/SignUp.jsx";
 
 function exercise() {
   const content = [
@@ -68,6 +69,40 @@ function exercise() {
         "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
       title: "Hello",
       blur: true
+    }
+  ];
+
+  const recommendedArticles = [
+    {
+      id: 1,
+      thumbnailImage: "../content/image.webp",
+      title: "Bros before mental woes",
+      locked: false,
+      blur: false
+    },
+    {
+      id: 2,
+      thumbnailImage:
+        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
+      title: "Game night: How activities can boost mental well-being",
+      locked: true,
+      blur: true
+    },
+    {
+      id: 3,
+      thumbnailImage:
+        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
+      title: "John Wick: Time to upgrade your sh*t",
+      locked: true,
+      blur: true
+    },
+    {
+      id: 4,
+      thumbnailImage:
+        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
+      title: "Get away! No seriously...it’s time to take a break",
+      locked: false,
+      blur: false
     }
   ];
 
@@ -154,6 +189,69 @@ function exercise() {
           );
         })}
       </motion.div>
+
+      <motion.div
+        layout
+        className="grid justify-center mt-20 items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
+      >
+        <motion.div
+          layout
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          exit={{ opacitiy: 0 }}
+          className="relative"
+          style=""
+        >
+          <SignUp />
+          {/* <article className="prose mx-auto text-white">{parse(DOMPurify.sanitize(post.content))}</article> */}
+        </motion.div>
+      </motion.div>
+      <motion.div className="mx-auto w-10/12 lg:w-4/5">
+        <p className="text-left text-white pb-0 font-bold">
+          Recommended Articles
+        </p>
+      </motion.div>
+      <motion.div
+        layout
+        className="grid gap-4 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-5 items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
+      >
+        {recommendedArticles.map(post => {
+          return (
+            <motion.div
+              layout
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              exit={{ opacitiy: 0 }}
+              className="relative bg-transparent"
+              key={post.id}
+              style={{ backgroundImage: `url${post.thumbnailImage}` }}
+            >
+              <div>
+                {post.locked && <img src="../content/lock.svg" alt="Locked" />}
+                <p className="text-white font-bold bg-transparent">
+                  {post.status}
+                </p>
+              </div>
+              <Link href={`/posts/${post.id}`}>
+                <img
+                  className={`w-full h-56 mx-auto object-cover border-none  ${
+                    post.blur ? "blur-sm" : "blur-none"
+                  }`}
+                  src={post.thumbnailImage}
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-60 ">
+                  <h3 className="text-white text-left font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    {post.title}
+                  </h3>
+                </div>
+              </Link>
+              {/* <article className="prose mx-auto text-white">{parse(DOMPurify.sanitize(post.content))}</article> */}
+            </motion.div>
+          );
+        })}
+      </motion.div>
+
+      <div></div>
     </div>
   );
 }
