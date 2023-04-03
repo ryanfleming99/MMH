@@ -199,7 +199,6 @@ function exercise() {
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
           exit={{ opacitiy: 0 }}
-          className="relative"
           style=""
         >
           <SignUp />
