@@ -192,14 +192,14 @@ function exercise() {
 
       <motion.div
         layout
-        className="grid justify-center mt-20 items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
+        className="grid justify-center mt-24 items-center mb-24 mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
       >
         <motion.div
           layout
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
           exit={{ opacitiy: 0 }}
-          style=""
+          className="relative"
         >
           <SignUp />
           {/* <article className="prose mx-auto text-white">{parse(DOMPurify.sanitize(post.content))}</article> */}
@@ -212,7 +212,7 @@ function exercise() {
       </motion.div>
       <motion.div
         layout
-        className="grid gap-4 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-5 items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
+        className="grid gap-4 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-5 items-center pb-24 mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
       >
         {recommendedArticles.map(post => {
           return (
@@ -249,8 +249,6 @@ function exercise() {
           );
         })}
       </motion.div>
-
-      <div></div>
     </div>
   );
 }
