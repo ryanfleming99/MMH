@@ -4,7 +4,7 @@ import styles from "../styles/Pillars.module.css";
 import CategoryHero from "../components/CategoryHero.jsx";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import HeroHeading from "../components/Typography/HeroHeading.jsx";
+import Breadcrumb from "../components/Typography/Breadcrumb.jsx";
 import SubHeading from "../components/Typography/SubHeading.jsx";
 import SignUp from "../components/SignUp.jsx";
 import NavbarNew from "../components/NavbarNew";
@@ -12,10 +12,9 @@ import NavbarNew from "../components/NavbarNew";
 function exercise() {
   const content = [
     {
-      title: "Exercise",
+      title: "Sweat now, shine later.",
       content1: `When we break a sweat and push our bodies to their limits, we release endorphins that naturally lift our mood and reduce feelings of stress and anxiety. But the benefits of exercise go far beyond just a temporary adrenaline rush. Regular physical activity has been shown to improve overall cognitive function, increase self-esteem, and even reduce the symptoms of depression and other mental health disorders.`,
-      content3:
-        "https://res.cloudinary.com/ryry/image/upload/v1680861357/exercise_u4e0xa.png"
+      breadcrumb: "Exercise"
     }
   ];
 
@@ -29,7 +28,7 @@ function exercise() {
     {
       id: 2,
       thumbnailImage:
-        "https://res.cloudinary.com/ryry/image/upload/v1680864395/eduardo-drapier-ipLwOIFm_qQ-unsplash_iryefs.jpg",
+        "https://res.cloudinary.com/ryry/image/upload/v1681040138/jiujitsu_hs7sp8.webp",
       title: "Jiu Jitsu Stretching 101"
     }
   ];
@@ -38,39 +37,39 @@ function exercise() {
     {
       id: 1,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
-      title: "Hello"
+        "https://res.cloudinary.com/ryry/image/upload/v1680867037/boxing_hu09kc.jpg",
+      title: "Fitness Fuel for Thought"
     },
     {
       id: 2,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
-      title: "Hello"
+        "https://res.cloudinary.com/ryry/image/upload/v1680867007/exercise_tp7lju.jpg",
+      title: "Train Hard, Rest Easy"
     },
     {
       id: 3,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
-      title: "Hello"
+        "https://res.cloudinary.com/ryry/image/upload/v1680867047/chart_u999f8.jpg",
+      title: "Active Lifestyle Now"
     },
     {
       id: 4,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
-      title: "Hello"
+        "https://res.cloudinary.com/ryry/image/upload/v1680867055/sunset_boftjx.jpg",
+      title: "Sweat and Shine"
     },
     {
       id: 5,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
-      title: "Hello",
+        "https://res.cloudinary.com/ryry/image/upload/v1680867049/rain_ekiuls.jpg",
+      title: "Fit for Life",
       blur: true
     },
     {
       id: 6,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
-      title: "Hello",
+        "https://res.cloudinary.com/ryry/image/upload/v1680867000/relationship_mj1uwd.jpg",
+      title: "Stronger Every Day",
       blur: true
     }
   ];
@@ -79,7 +78,7 @@ function exercise() {
     {
       id: 1,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
+        "https://res.cloudinary.com/ryry/image/upload/v1680866978/work_cd7vvy.jpg",
       title: "Bros before mental woes",
       locked: false,
       blur: false
@@ -87,7 +86,7 @@ function exercise() {
     {
       id: 2,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
+        "https://res.cloudinary.com/ryry/image/upload/v1680866998/socialising_ewhy82.jpg",
       title: "Game night: How activities can boost mental well-being",
       locked: true,
       blur: true
@@ -95,7 +94,7 @@ function exercise() {
     {
       id: 3,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
+        "https://res.cloudinary.com/ryry/image/upload/v1680867015/mentalHealth_qf4em0.jpg",
       title: "John Wick: Time to upgrade your sh*t",
       locked: true,
       blur: true
@@ -103,7 +102,7 @@ function exercise() {
     {
       id: 4,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
+        "https://res.cloudinary.com/ryry/image/upload/v1680861357/exercise_u4e0xa.png",
       title: "Get away! No seriously...it’s time to take a break",
       locked: false,
       blur: false
@@ -130,7 +129,7 @@ function exercise() {
       className="bg-mainbg min-h-full bg-no-repeat bg-contain"
       style={{
         backgroundImage:
-          "url('https://res.cloudinary.com/ryry/image/upload/v1680866088/pattern_raxqfh.png')"
+          "url('https://res.cloudinary.com/ryry/image/upload/v1681047301/man-running-up-hill-black-white_g4vfcg.jpg')"
       }}
     >
       <Head>
@@ -140,11 +139,22 @@ function exercise() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavbarNew />
-      <CategoryHero title={content[0].title} content1={content[0].content1} />
+      <CategoryHero
+        title={content[0].title}
+        content1={content[0].content1}
+        breadcrumb={content[0].breadcrumb}
+      />
       {/* Blog grid */}
       <motion.div
         layout
-        className="grid gap-4 lg:grid-cols-2  sm:grid-cols-1 justify-center mt-20 items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
+        className="grid gap-4 lg:grid-cols-2 relative sm:grid-cols-1 justify-center items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full"
+      >
+        <p className="text-white text-2xl pb-10">Recent blogs</p>
+      </motion.div>
+
+      <motion.div
+        layout
+        className="grid gap-4 lg:grid-cols-2  sm:grid-cols-1 justify-center items-center  mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
       >
         {blogSquare.map(post => {
           return (
@@ -159,11 +169,11 @@ function exercise() {
             >
               <Link href={`/posts/${post.id}`}>
                 <img
-                  className="w-full mx-auto object-contain opacity-100 hover:opacity-50"
+                  className="w-full mx-auto object-contain border border-white opacity-100"
                   src={post.thumbnailImage}
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0"></div>
-                <h3 className="text-white text-center font-semibold text-6xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div className="absolute inset-0 bg-black bg-opacity-50 hover:bg-opacity-0"></div>
+                <h3 className="text-white text-center font-semibold text-8xl hover:opacity-100 border-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                   {post.title}
                 </h3>
               </Link>
@@ -172,11 +182,11 @@ function exercise() {
           );
         })}
       </motion.div>
-      <h2 className="text-center text-6xl text-white font-semibold pt-32">
+      <h2 className="text-center text-6xl text-white font-semibold pt-40">
         Ultimate Workout Categories
       </h2>
-      <h3 className="text-center text-4xl text-white font-semibold py-8 pb-24">
-        Ultimate Workout Categories
+      <h3 className="text-center text-2xl text-white pt-4">
+        Here are a collection of the best workout categories for you to view
       </h3>
       <motion.div
         layout
@@ -198,7 +208,7 @@ function exercise() {
                 href={`/posts/${post.id}`}
               >
                 <img
-                  className={`w-full h-54 mx-auto object-cover border-none  ${
+                  className={`w-full h-54 opacity-30 mx-auto object-cover border-none  ${
                     post.blur ? "blur-sm" : "blur-none"
                   }`}
                   src={post.thumbnailImage}
