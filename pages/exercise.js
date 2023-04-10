@@ -113,14 +113,14 @@ function exercise() {
     {
       id: 1,
       thumbnailImage:
-        "https://res.cloudinary.com/ryry/image/upload/v1680867056/sky_kujntr.webp",
-      title: "50% off when using code 3344`"
+        "https://hips.hearstapps.com/hmg-prod/images/healthy-lunch-in-boxes-royalty-free-image-1066057914-1543528089.jpg",
+      title: ""
     },
     {
       id: 2,
       thumbnailImage:
-        "https://res.cloudinary.com/maistra/image/upload/v1661773058/Proprietes/Camspite/Rovinj/Campsite%20Ve%C5%A1tar/REstaurants%20/Basilico%20Pizza%20Pasta/Basilico_Pizza_Pasta_raqsx4.jpg",
-      title: "Game night: How activities can boost mental well-being"
+        "https://dce5jani6jm7e.cloudfront.net/data/refer-friend/meta/refer-friend-en.jpg",
+      title: ""
     }
   ];
 
@@ -239,6 +239,42 @@ function exercise() {
         </motion.div>
       </motion.div>
       <motion.div className="mx-auto w-10/12 lg:w-4/5">
+        <p className="text-left text-white pb-0 font-bold">Ads</p>
+      </motion.div>
+      <motion.div
+        layout
+        className="grid gap-4 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-5 items-center pb-24 mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
+      >
+        {ads.map(post => {
+          return (
+            <motion.div
+              layout
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              exit={{ opacitiy: 0 }}
+              className="relative bg-transparent"
+              key={post.id}
+              style={{ backgroundImage: `url${post.thumbnailImage}` }}
+            >
+              <Link href={`/posts/${post.id}`}>
+                <img
+                  className={`w-full h-56 mx-auto object-cover border-none  ${
+                    post.blur ? "blur-sm" : "blur-none"
+                  }`}
+                  src={post.thumbnailImage}
+                />
+                <div className="absolute text-left inset-0 bg-black bg-opacity-0">
+                  <h3 className="text-white text-left font-semibold text-4xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    {post.title}
+                  </h3>
+                </div>
+              </Link>
+              {/* <article className="prose mx-auto text-white">{parse(DOMPurify.sanitize(post.content))}</article> */}
+            </motion.div>
+          );
+        })}
+      </motion.div>
+      <motion.div className="mx-auto w-10/12 lg:w-4/5">
         <p className="text-left text-white pb-0 font-bold">
           Recommended Articles
         </p>
@@ -260,45 +296,6 @@ function exercise() {
             >
               <div>
                 {post.locked && <img src="../content/lock.svg" alt="Locked" />}
-                <p className="text-white font-bold bg-transparent">
-                  {post.status}
-                </p>
-              </div>
-              <Link href={`/posts/${post.id}`}>
-                <img
-                  className={`w-full h-56 mx-auto object-cover border-none  ${
-                    post.blur ? "blur-sm" : "blur-none"
-                  }`}
-                  src={post.thumbnailImage}
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0">
-                  <h3 className="text-white text-left font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    {post.title}
-                  </h3>
-                </div>
-              </Link>
-              {/* <article className="prose mx-auto text-white">{parse(DOMPurify.sanitize(post.content))}</article> */}
-            </motion.div>
-          );
-        })}
-      </motion.div>
-
-      <motion.div
-        layout
-        className="grid gap-4 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-5 items-center pb-24 mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
-      >
-        {ads.map(post => {
-          return (
-            <motion.div
-              layout
-              animate={{ opacity: 1 }}
-              initial={{ opacity: 0 }}
-              exit={{ opacitiy: 0 }}
-              className="relative bg-transparent flex justify-space-between"
-              key={post.id}
-              style={{ backgroundImage: `url${post.thumbnailImage}` }}
-            >
-              <div>
                 <p className="text-white font-bold bg-transparent">
                   {post.status}
                 </p>
