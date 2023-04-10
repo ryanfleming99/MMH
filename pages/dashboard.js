@@ -11,7 +11,6 @@ import Link from "next/link"
 import NavbarNew from "../components/NavbarNew"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import coloseum from "../content/coloseum4.png"
 
 function Dashboard() {
 
