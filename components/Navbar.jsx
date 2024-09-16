@@ -12,33 +12,41 @@ import ProfileDropdown from "../components/ProfileDropdown";
 const Navbar = () => {
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Blog", href: "blog" },
-    { name: "Admin", href: "admin" },
-    { name: "About", href: "about" },
-    { name: "Exercise", href: "exercise" },
-    { name: "Relationship", href: "relationship" },
-    { name: "Health", href: "health" }
+    { name: "Blog", href: "/blog" }, // Updated href with proper path
+    { name: "Admin", href: "/admin" }, // Updated href with proper path
+    { name: "About", href: "/about" },
+    { name: "Exercise", href: "/exercise" },
+    { name: "Relationship", href: "/relationship" },
+    { name: "Health", href: "/health" }
   ];
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, loading, error] = useAuthState(auth);
 
-  console.log(user);
   return (
     <>
       <div className={styles.description}>
-        <Image src={Logo} alt="profile icon" className="h-16 w-16 " />
+        {/* Optimized Logo usage */}
+        <Image
+          src={Logo}
+          alt="MMH Logo"
+          width={64}
+          height={64}
+          className="h-16 w-16"
+        />
 
         {/* Navbar Start */}
-        <div className="">
+        <div>
           <nav
             className="flex h-9 items-center justify-between"
             aria-label="Global"
           >
             <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-              </a>
+              <Link href="/">
+                <div className="-m-1.5 p-1.5">
+                  <span className="sr-only">MMH</span>
+                </div>
+              </Link>
             </div>
             <div className="flex lg:hidden">
               <button
@@ -50,15 +58,13 @@ const Navbar = () => {
                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
-            <div className=" lg:flex lg:min-w-4 lg:flex-1 lg:justify-center lg:gap-x-8">
+            <div className="lg:flex lg:min-w-4 lg:flex-1 lg:justify-center lg:gap-x-8">
               {navigation.map(item => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="font-semibold text-white hover:text-gray-400"
-                >
-                  {item.name}
-                </a>
+                <Link key={item.name} href={item.href}>
+                  <p className="font-semibold text-white hover:text-gray-400">
+                    {item.name}
+                  </p>
+                </Link>
               ))}
 
               {/* Logged in State */}
@@ -69,26 +75,27 @@ const Navbar = () => {
               ) : (
                 /* Logged out State */
                 <Link href="/login">
-                  <button className="text-white p-2 font-semibold border-white border-2 rounded-lg cursor-pointer hover:text-gray-400 hover:border-gray-400">
+                  <p className="text-white p-2 font-semibold border-white border-2 rounded-lg cursor-pointer hover:text-gray-400 hover:border-gray-400">
                     Login
-                  </button>
+                  </p>
                 </Link>
               )}
             </div>
           </nav>
         </div>
       </div>
+
+      {/* Mobile Menu Dialog */}
       <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <Dialog.Panel
-          focus="true"
-          className="fixed inset-0 z-10 overflow-y-auto  px-12 py-12 lg:hidden"
-        >
+        <Dialog.Panel className="fixed inset-0 z-10 overflow-y-auto px-12 py-12 lg:hidden">
           <div className="flex h-9 items-center justify-between">
             <div className="flex">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <Image src={Logo} alt="" className="h-14 w-14" />
-              </a>
+              <Link href="/">
+                <div className="-m-1.5 p-1.5">
+                  <span className="sr-only">MMH</span>
+                  <Image src={Logo} alt="MMH Logo" width={56} height={56} />
+                </div>
+              </Link>
             </div>
             <div className="flex">
               <button
@@ -101,26 +108,25 @@ const Navbar = () => {
               </button>
             </div>
           </div>
+
           <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-200/10 ">
+            <div className="-my-6 divide-y divide-gray-200/10">
               <div className="space-y-2 py-6">
                 {navigation.map(item => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="-mx-3 text-center block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white hover:bg-gray-400/10"
-                  >
-                    {item.name}
-                  </a>
+                  <Link key={item.name} href={item.href}>
+                    <div className="-mx-3 text-center block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white hover:bg-gray-400/10">
+                      {item.name}
+                    </div>
+                  </Link>
                 ))}
               </div>
+
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 text-center block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-white hover:bg-gray-400/10"
-                >
-                  Log in
-                </a>
+                <Link href="/login">
+                  <div className="-mx-3 text-center block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-white hover:bg-gray-400/10">
+                    Log in
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

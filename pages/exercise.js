@@ -18,10 +18,22 @@ function exercise() {
     }
   ];
 
-  const lockIcon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="white" class="w-6 h-6">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-  </svg>
-
+  const lockIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="3"
+      stroke="white"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+      />
+    </svg>
+  );
 
   const blogSquare = [
     {
@@ -164,12 +176,15 @@ function exercise() {
         {blogSquare.map(post => {
           return (
             <div className="relative">
-
               <Link href={`/posts/${post.id}`}>
-                <img className="w-full h-60 mx-auto object-cover" src={post.thumbnailImage} />
+                <Image
+                  className="w-full h-60 mx-auto object-cover"
+                  src={post.thumbnailImage}
+                />
                 <div className="absolute inset-0 bg-black bg-opacity-60 "></div>
-                <h3 className="text-white text-center font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">{post.title}</h3>
-
+                <h3 className="text-white text-center font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  {post.title}
+                </h3>
               </Link>
             </div>
           );
@@ -200,9 +215,10 @@ function exercise() {
                 className="w-full h-54 mx-auto object-cover"
                 href={`/posts/${post.id}`}
               >
-                <img
-                  className={`w-full h-54 opacity-30 mx-auto object-cover border-none  ${post.blur ? "blur-sm" : "blur-none"
-                    }`}
+                <Image
+                  className={`w-full h-54 opacity-30 mx-auto object-cover border-none  ${
+                    post.blur ? "blur-sm" : "blur-none"
+                  }`}
                   src={post.thumbnailImage}
                 />
                 <div className="absolute inset-2  bg-opacity-0 bg-black "></div>
@@ -249,9 +265,10 @@ function exercise() {
               style={{ backgroundImage: `url${post.thumbnailImage}` }}
             >
               <Link href={`/posts/${post.id}`}>
-                <img
-                  className={`w-full h-56 mx-auto object-cover border-none  ${post.blur ? "blur-sm" : "blur-none"
-                    }`}
+                <Image
+                  className={`w-full h-56 mx-auto object-cover border-none  ${
+                    post.blur ? "blur-sm" : "blur-none"
+                  }`}
                   src={post.thumbnailImage}
                 />
                 <div className="absolute text-left inset-0 bg-black bg-opacity-0">
@@ -286,15 +303,21 @@ function exercise() {
               style={{ backgroundImage: `url${post.thumbnailImage}` }}
             >
               <div>
-                {post.locked && (<div className="absolute z-10 translate-x-1/2 translate-y-1/2   mx-auto"> {lockIcon}</div>)}
+                {post.locked && (
+                  <div className="absolute z-10 translate-x-1/2 translate-y-1/2   mx-auto">
+                    {" "}
+                    {lockIcon}
+                  </div>
+                )}
                 <p className="text-white font-bold bg-transparent">
                   {post.status}
                 </p>
               </div>
               <Link href={`/posts/${post.id}`}>
-                <img
-                  className={`w-full h-56 mx-auto object-cover border-none  ${post.blur ? "blur-sm" : "blur-none"
-                    }`}
+                <Image
+                  className={`w-full h-56 mx-auto object-cover border-none  ${
+                    post.blur ? "blur-sm" : "blur-none"
+                  }`}
                   src={post.thumbnailImage}
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0">
@@ -313,6 +336,3 @@ function exercise() {
 }
 
 export default exercise;
-
-
-

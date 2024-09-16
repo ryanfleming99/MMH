@@ -2,21 +2,19 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
-import Header from "../components/Header.jsx"
-import Pillars from "../components/Pillars"
-import SignUp from "../components/SignUp"
+import Header from "../components/Header.jsx";
+import Pillars from "../components/Pillars";
+import SignUp from "../components/SignUp";
 import { Sign } from "crypto";
-import WhatsIncluded from "../components/WhatsIncluded.jsx"
-import Footer from "../components/Footer"
+import WhatsIncluded from "../components/WhatsIncluded.jsx";
+import Footer from "../components/Footer";
 import NavbarNew from "../components/NavbarNew";
-import OurMission from "../components/OurMission"
-import TheProcess from "../components/TheProcess"
+import OurMission from "../components/OurMission";
+import TheProcess from "../components/TheProcess";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-
-
   return (
     <main className="bg-mainbg ">
       <Head>
@@ -27,7 +25,6 @@ export default function Home() {
       </Head>
       <NavbarNew />
       <Header />
-      <OurMission />
       <TheProcess />
       <WhatsIncluded />
       <Footer />

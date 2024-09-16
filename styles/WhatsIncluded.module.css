@@ -1,78 +1,92 @@
 .container {
-    padding: 3rem;
-    min-height: 100vh;
-    background: linear-gradient(0deg,
-            rgba(26, 26, 26, 0.95),
-            rgba(26, 26, 26, 0.95)),
-        url("../content/columns2.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    max-width: var(--max-width);
-    position: relative
+  padding: 3rem;
+  min-height: 100vh;
+  background: linear-gradient(
+      0deg,
+      rgba(26, 26, 26, 0.95),
+      rgba(26, 26, 26, 0.95)
+    ),
+    url("../content/columns2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: var(--max-width);
+  position: relative;
 }
 
 .exercise {
-    background: linear-gradient(0deg,
-            rgba(26, 26, 26, 0.7),
-            rgba(26, 26, 26, 0.7)),
-        url("../content/categoryImages/exercise.jpg");
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    border-left: 5px solid #4b5563
+  background: linear-gradient(
+      0deg,
+      rgba(26, 26, 26, 0.7),
+      rgba(26, 26, 26, 0.7)
+    ),
+    url("../content/categoryImages/exercise.jpg");
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-left: 5px solid #4b5563;
 }
 
 .health {
-    background: linear-gradient(0deg,
-            rgba(26, 26, 26, 0.7),
-            rgba(26, 26, 26, 0.7)),
-        url("../content/categoryImages/health.jpg");
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    border-left: 5px solid #4b5563
+  background: linear-gradient(
+      0deg,
+      rgba(26, 26, 26, 0.7),
+      rgba(26, 26, 26, 0.7)
+    ),
+    url("../content/categoryImages/mentalHealth.jpg");
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-left: 5px solid #4b5563;
 }
 
 .relationship {
-    background: linear-gradient(0deg,
-            rgba(26, 26, 26, 0.7),
-            rgba(26, 26, 26, 0.7)),
-        url("../content/categoryImages/relationship.jpg");
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    border-left: 5px solid #4b5563
+  background: linear-gradient(
+      0deg,
+      rgba(26, 26, 26, 0.7),
+      rgba(26, 26, 26, 0.7)
+    ),
+    url("../content/categoryImages/relationship.jpg");
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-left: 5px solid #4b5563;
 }
 
 .work {
-    background: linear-gradient(0deg,
-            rgba(26, 26, 26, 0.7),
-            rgba(26, 26, 26, 0.7)),
-        url("../content/categoryImages/work.jpg");
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    border-left: 5px solid #4b5563
+  background: linear-gradient(
+      0deg,
+      rgba(26, 26, 26, 0.7),
+      rgba(26, 26, 26, 0.7)
+    ),
+    url("../content/categoryImages/work.jpg");
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-left: 5px solid #4b5563;
 }
 
 .mentalHealth {
-    background: linear-gradient(0deg,
-            rgba(26, 26, 26, 0.7),
-            rgba(26, 26, 26, 0.7)),
-        url("../content/categoryImages/mentalHealth.jpg");
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    border-left: 5px solid #4b5563
+  background: linear-gradient(
+      0deg,
+      rgba(26, 26, 26, 0.7),
+      rgba(26, 26, 26, 0.7)
+    ),
+    url("../content/lock.png");
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-left: 5px solid #4b5563;
 }
 
 .socialising {
-    background: linear-gradient(0deg,
-            rgba(26, 26, 26, 0.7),
-            rgba(26, 26, 26, 0.7)),
-        url("../content/categoryImages/socialising.jpg");
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    border-left: 5px solid #4b5563
+  background: linear-gradient(
+      0deg,
+      rgba(26, 26, 26, 0.7),
+      rgba(26, 26, 26, 0.7)
+    ),
+    url("../content/lock.png");
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-left: 5px solid #4b5563;
 }
