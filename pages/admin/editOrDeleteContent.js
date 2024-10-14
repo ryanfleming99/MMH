@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { contentCatEdit } from "../../atoms/contentCategoryEdit";
 import ContentCategoryEdit from "../../components/admin/ContentCategoryEdit";
@@ -6,7 +6,6 @@ import ContentContainerEdit from "../../components/admin/ContentContainerEdit";
 import { getDocs, query, collection, where } from "firebase/firestore";
 import { firestore } from "../../lib/firebase/firebase";
 import Spinner from "../../components/Spinner";
-import Image from "next/image"; // Import next/image
 
 const EditOrDeleteContent = () => {
   const postCategories = [
@@ -21,7 +20,7 @@ const EditOrDeleteContent = () => {
   const [loading, setLoading] = useState(false);
   const selectedCategory = useRecoilValue(contentCatEdit);
 
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     try {
       setLoading(true);
       const querySnapshot = await getDocs(
@@ -41,14 +40,14 @@ const EditOrDeleteContent = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
 
   useEffect(() => {
     if (selectedCategory.name !== "Choose Category") {
       fetchPosts();
     }
     console.log(selectedCategory.name);
-  }, [selectedCategory]);
+  }, [selectedCategory, fetchPosts]);
 
   return (
     <div className="w-full mx-auto bg-mainbg -mt-4 pt-4">

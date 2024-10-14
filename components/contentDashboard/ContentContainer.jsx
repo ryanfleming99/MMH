@@ -4,6 +4,7 @@ import NavbarNew from "../../components/NavbarNew";
 import Link from "next/link";
 import { firestore, auth } from "../../lib/firebase/firebase";
 import { doc, getDocs, collection, where, query } from "firebase/firestore";
+import Image from "next/image";
 
 const contentPost = ({ posts, category }) => {
   // const [postsArray, setPostsArray] = useState(posts)
@@ -51,6 +52,7 @@ const contentPost = ({ posts, category }) => {
               >
                 <Link href={`/content/${category.toLowerCase()}/${post.id}`}>
                   <Image
+                    alt={title}
                     className="w-full h-52 mx-auto object-cover"
                     src={post.thumbnailImage}
                   />

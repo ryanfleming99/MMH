@@ -5,6 +5,7 @@ import Link from "next/link";
 import { firestore, auth } from "../../lib/firebase/firebase";
 import { doc, getDocs, collection, where, query } from "firebase/firestore";
 import DeleteContentModal from "./DeletePostModal";
+import Image from "next/image";
 
 const contentPost = ({ posts, category }) => {
   // const [postsArray, setPostsArray] = useState(posts)
@@ -43,6 +44,7 @@ const contentPost = ({ posts, category }) => {
                   <Link href={`/posts/${post.id}`}>
                     <Image
                       className="w-full h-52 mx-auto object-cover"
+                      alt={`${title} image`}
                       src={post.thumbnailImage}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-60 "></div>

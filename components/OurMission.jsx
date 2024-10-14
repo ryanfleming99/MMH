@@ -1,6 +1,8 @@
 import React from "react";
 import SubHeading from "./Typography/SubHeading";
 import { motion } from "framer-motion";
+import Image from "next/image";
+
 const OurMission = () => {
   return (
     <div className="w-9/12 mx-auto grid grid-cols-1 md:grid-cols-2 items-center pb-12">
@@ -18,7 +20,7 @@ const OurMission = () => {
         <p className="my-auto text-lg lg:text-xl xl:text-2xl text-white">
           We aim to improve the mental and physical condition of as many people
           as we can. Through education and our community, we are confident in
-          bringing impactful change to all of our members' lives.
+          bringing impactful change to all of our members&apos; lives.
         </p>
       </div>
     </div>

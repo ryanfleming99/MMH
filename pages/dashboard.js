@@ -56,7 +56,7 @@ function Dashboard() {
           Dashboard
         </h1>
         <p className="text-gray-300 text-center pt-12 mx-auto w-4/5 lg:w-3/5">
-          Welcome to MMH, we're glad to have you onboard.
+          Welcome to MMH, we&apos;re glad to have you onboard.
         </p>
         <div className="flex flex-wrap gap-3 text-white place-content-center justify-evenly mt-12"></div>
 

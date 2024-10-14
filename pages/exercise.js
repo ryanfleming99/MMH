@@ -8,6 +8,7 @@ import Breadcrumb from "../components/Typography/Breadcrumb.jsx";
 import SubHeading from "../components/Typography/SubHeading.jsx";
 import SignUp from "../components/SignUp.jsx";
 import NavbarNew from "../components/NavbarNew";
+import Image from "next/image";
 
 function exercise() {
   const content = [
@@ -175,9 +176,10 @@ function exercise() {
       >
         {blogSquare.map(post => {
           return (
-            <div className="relative">
+            <div className="relative" key={post.id}>
               <Link href={`/posts/${post.id}`}>
                 <Image
+                  alt={`${title} image`}
                   className="w-full h-60 mx-auto object-cover"
                   src={post.thumbnailImage}
                 />
@@ -220,6 +222,7 @@ function exercise() {
                     post.blur ? "blur-sm" : "blur-none"
                   }`}
                   src={post.thumbnailImage}
+                  alt={`${title} image`}
                 />
                 <div className="absolute inset-2  bg-opacity-0 bg-black "></div>
                 <h3 className="text-white text-center font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -270,6 +273,7 @@ function exercise() {
                     post.blur ? "blur-sm" : "blur-none"
                   }`}
                   src={post.thumbnailImage}
+                  alt={`${title} image`}
                 />
                 <div className="absolute text-left inset-0 bg-black bg-opacity-0">
                   <h3 className="text-white text-left font-semibold text-4xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -319,6 +323,7 @@ function exercise() {
                     post.blur ? "blur-sm" : "blur-none"
                   }`}
                   src={post.thumbnailImage}
+                  alt={`${title} image`}
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0">
                   <h3 className="text-white text-left font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">

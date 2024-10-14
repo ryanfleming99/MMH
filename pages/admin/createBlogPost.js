@@ -99,7 +99,7 @@ const CreateBlogPost = () => {
           type="file"
           onChange={e => onSelectImage(e)}
         />
-        {image && <Image src={image} className="w-20 h-20" />}
+        {image && <Image alt={"image"} src={image} className="w-20 h-20" />}
 
         {/* Title input */}
         <div className="mb-4 text-2xl">

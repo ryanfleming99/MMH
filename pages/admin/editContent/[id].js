@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { v4 as uuidv4 } from "uuid";
@@ -19,6 +19,7 @@ import { contentTier } from "../../../atoms/contentTier";
 import NavbarNew from "../../../components/NavbarNew";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const RichTextEditor = dynamic(() => import("@mantine/rte"), {
   ssr: false,
@@ -56,7 +57,8 @@ const EditContentEntry = () => {
     { name: "", description: "", productLink: "", imageLink: "" }
   ]);
 
-  const getPost = async () => {
+  // Memoize the getPost function to avoid unnecessary re-renders
+  const getPost = useCallback(async () => {
     const querySnapshot = await getDoc(doc(firestore, "content", id));
 
     setPost(querySnapshot.data());
@@ -66,12 +68,12 @@ const EditContentEntry = () => {
     setSelectedCategory(querySnapshot.data().category);
     setAffProducts(querySnapshot.data().affiliateProducts);
     console.log("SELECTED", selectedCategory);
-  };
+  }, [id, setSelectedCategory, selectedCategory]);
 
   useEffect(() => {
     console.log(content);
-    getPost();
-  }, []);
+    getPost(); // getPost is now stable
+  }, [content, getPost]); // Add content and getPost as dependencies
 
   const onSelectImage = event => {
     const reader = new FileReader();
@@ -111,7 +113,6 @@ const EditContentEntry = () => {
     e.preventDefault();
     setLoading(true);
     const postRef = doc(firestore, "content", id);
-    // const postDoc = await getDoc(postRef)
 
     await updateDoc(postRef, {
       creator: user.uid,
@@ -132,19 +133,19 @@ const EditContentEntry = () => {
   };
 
   return (
-    <div className=" grid  min-h-screen pb-4 bg-mainbg justify-center z-0">
+    <div className="grid min-h-screen pb-4 bg-mainbg justify-center z-0">
       <Head>
         <title>Edit Content Entry</title>
       </Head>
       <NavbarNew />
-      <div className=" max-w-5xl mx-auto ">
+      <div className="max-w-5xl mx-auto">
         <h1 className="text-center text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl mt-12 mb-12">
           Edit Content Entry
         </h1>
 
         {/* Image input */}
         <label
-          className="block text-white text-2xl font-bold md:text-left  md:mb-0 pr-4"
+          className="block text-white text-2xl font-bold md:text-left md:mb-0 pr-4"
           htmlFor="inline-full-name"
         >
           Thumbnail Image upload
@@ -154,7 +155,9 @@ const EditContentEntry = () => {
           type="file"
           onChange={e => onSelectImage(e)}
         />
-        {image && <Image src={image} className="w-20 h-20" />}
+        {image && (
+          <Image src={image} alt={`${title} image`} className="w-20 h-20" />
+        )}
 
         {/* Title input */}
         <div className="mb-4 text-2xl">
@@ -182,7 +185,7 @@ const EditContentEntry = () => {
         <ContentTierSelect tiers={contentTiers} />
         <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
 
-        {/* ---------------------------Affiliate Products------------------------ */}
+        {/* Affiliate Products */}
         <h2 className="block text-white text-3xl font-bold md:text-left mb-1 md:mb-0 pr-4">
           Product Links
         </h2>
@@ -192,11 +195,11 @@ const EditContentEntry = () => {
             layout
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
-            exit={{ opacitiy: 0 }}
+            exit={{ opacity: 0 }}
             key={id}
-            className=" mt-4 text-2xl border-2 border-gray-400 rounded-lg p-4"
+            className="mt-4 text-2xl border-2 border-gray-400 rounded-lg p-4"
           >
-            {/* ---------------Product Name--------------- */}
+            {/* Product Name */}
             <label
               className="block text-white font-bold md:text-left mb-1 pr-4"
               htmlFor="inline-full-name"
@@ -211,7 +214,7 @@ const EditContentEntry = () => {
               onChange={event => handleFormChange(event, id)}
             />
 
-            {/* ---------------Product Description--------------- */}
+            {/* Product Description */}
             <label
               className="block text-white font-bold md:text-left mb-1 pr-4"
               htmlFor="inline-full-name"
@@ -226,7 +229,7 @@ const EditContentEntry = () => {
               onChange={event => handleFormChange(event, id)}
             />
 
-            {/* ---------------Product Link--------------- */}
+            {/* Product Link */}
             <label
               className="block text-white font-bold md:text-left mb-1 pr-4"
               htmlFor="inline-full-name"
@@ -241,7 +244,7 @@ const EditContentEntry = () => {
               onChange={event => handleFormChange(event, id)}
             />
 
-            {/* ---------------Image Link--------------- */}
+            {/* Image Link */}
             <label
               className="block text-white font-bold md:text-left mb-1 pr-4"
               htmlFor="inline-full-name"
@@ -258,7 +261,7 @@ const EditContentEntry = () => {
 
             <button
               type="button"
-              className=" block w-62  bg-transparent mt-4 text-white text-lg py-1 px-4 border border-white rounded"
+              className="block w-62 bg-transparent mt-4 text-white text-lg py-1 px-4 border border-white rounded"
               onClick={() => handleRemoveProduct(id)}
             >
               Remove product
@@ -267,14 +270,14 @@ const EditContentEntry = () => {
         ))}
         <button
           type="button"
-          className=" block w-48  bg-transparent mt-4 text-white py-2 px-4 border border-white rounded"
+          className="block w-48 bg-transparent mt-4 text-white py-2 px-4 border border-white rounded"
           onClick={e => handleAddProduct(e)}
         >
           Add another product
         </button>
 
         <button
-          className=" w-64 bg-transparent mt-12 text-white py-2 px-4 border border-white rounded"
+          className="w-64 bg-transparent mt-12 text-white py-2 px-4 border border-white rounded"
           onClick={e => handleEditContentEntry(e)}
         >
           {loading ? "Loading" : "Update Entry"}
