@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { getDoc, doc } from "firebase/firestore";
 import { firestore } from "../../lib/firebase/firebase";
 import Link from "next/link";
@@ -8,11 +8,12 @@ import DOMPurify from "isomorphic-dompurify";
 import Spinner from "../Spinner";
 
 const Post = ({ id }) => {
-  const [post, setPost] = useState(null); // Initialize post as null for proper loading logic
-  const [loading, setLoading] = useState(true); // Add a loading state
-  const [error, setError] = useState(null); // Add error state
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const getPost = async () => {
+  // Memoize the getPost function
+  const getPost = useCallback(async () => {
     try {
       const docRef = doc(firestore, "content", id);
       const querySnapshot = await getDoc(docRef);
@@ -25,15 +26,15 @@ const Post = ({ id }) => {
       console.error("Error fetching post:", error);
       setError("Error fetching post data");
     } finally {
-      setLoading(false); // Set loading to false once data is fetched
+      setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     if (firestore && id) {
       getPost();
     }
-  }, [id]);
+  }, [id, getPost]); // getPost is now memoized
 
   if (loading) {
     return (
@@ -68,10 +69,8 @@ const Post = ({ id }) => {
 
       <article className="prose max-w-3xl mx-auto text-white prose-li:marker:text-white prose-h1:text-white prose-h2:text-white prose-h3:text-white prose-h4:text-white mt-12">
         {parse(DOMPurify.sanitize(post?.content || ""))}{" "}
-        {/* Sanitize post content */}
       </article>
 
-      {/* Affiliate Products Section */}
       {post?.affiliateProducts ? (
         <section className="mt-12">
           <hr className="h-[2px] my-8 bg-gray-200 border-0 w-full lg:w-8/12 mx-auto dark:bg-gray-700" />
