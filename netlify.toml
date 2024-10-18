@@ -1,0 +1,3 @@
+[build]
+  publish = ".next"
+  cache = [".next/cache"]
