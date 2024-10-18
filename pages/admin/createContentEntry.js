@@ -133,7 +133,11 @@ const CreateContentEntry = () => {
           onChange={e => onSelectImage(e)}
         />
         {image && (
-          <Image alt={`${title} image`} src={image} className="w-20 h-20" />
+          <Image
+            alt={`${post.title} image`}
+            src={image}
+            className="w-20 h-20"
+          />
         )}
 
         {/* Title input */}

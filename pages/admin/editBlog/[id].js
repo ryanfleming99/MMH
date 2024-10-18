@@ -113,7 +113,11 @@ const EditBlogPost = () => {
             onChange={e => onSelectImage(e)}
           />
           {image && (
-            <Image src={image} alt={`${title} image`} className="w-20 h-20" />
+            <Image
+              src={image}
+              alt={`${post.title} image`}
+              className="w-20 h-20"
+            />
           )}
 
           {/* Title input */}

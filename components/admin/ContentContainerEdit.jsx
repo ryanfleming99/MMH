@@ -44,7 +44,7 @@ const contentPost = ({ posts, category }) => {
                   <Link href={`/posts/${post.id}`}>
                     <Image
                       className="w-full h-52 mx-auto object-cover"
-                      alt={`${title} image`}
+                      alt={`${post.title} image`}
                       src={post.thumbnailImage}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-60 "></div>
