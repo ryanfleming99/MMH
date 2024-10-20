@@ -45,7 +45,7 @@ const Header = () => {
       >
         <div className="absolute translate-x-24 translate-y-32 group-hover:rotate-12 group-hover:translate-x-16 group-hover:translate-y-40  transition-all ease-in-out">
           <Image
-            src="/boxing.jpg "
+            src="/boxing.jpg"
             width={350}
             height={350}
             alt="boxing image"
@@ -54,7 +54,7 @@ const Header = () => {
 
         <div className="absolute group-hover:-rotate-12 transition-all ease-in-out group-hover:-translate-x-18 group-hover:-translate-y-10 ">
           <Image
-            src="/rain.jpg "
+            src="/rain.jpg"
             width={350}
             height={350}
             alt="raining backdrop"
@@ -62,7 +62,7 @@ const Header = () => {
         </div>
         <div className="absolute translate-y-12 translate-x-52 group-hover:rotate-12 transition-all ease-in-out group-hover:translate-y-20 group-hover:translate-x-60">
           <Image
-            src="/chart.jpg "
+            src="/chart.jpg"
             width={350}
             height={350}
             alt="mobile phone showing trading chart"
@@ -70,7 +70,7 @@ const Header = () => {
         </div>
         <div className="absolute -translate-y-48 translate-x-48 group-hover:rotate-12 transition-all ease-in-out group-hover:translate-x-56 group-hover:-translate-y-56">
           <Image
-            src="/forest.jpg "
+            src="/forest.jpg"
             width={350}
             height={350}
             alt="snow covered forest"
@@ -79,7 +79,7 @@ const Header = () => {
 
         <div className="-translate-y-20 translate-x-16 group-hover:-rotate-12 transition-all ease-in-out group-hover:translate-x-8 group-hover:-translate-y-40">
           <Image
-            src="/sunset.jpg "
+            src="/sunset.jpg"
             width={350}
             height={350}
             alt="sunset overlooking a city"
