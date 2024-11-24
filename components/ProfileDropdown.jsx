@@ -13,7 +13,7 @@ const ProfileDropdown = ({ user }) => {
         <div>
           <Menu.Button className=" justify-center rounded-md text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <Image
-              alt={`${title} image`}
+              alt={`${post.title} image`}
               className="h-12 w-12 rounded-full"
               src={user?.photoURL}
             />

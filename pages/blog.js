@@ -11,19 +11,25 @@ import safeJsonStringify from "safe-json-stringify";
 import Image from "next/image"; // Import next/image
 
 export async function getServerSideProps(context) {
-  const res = await getDocs(collection(firestore, "posts"));
-
-  const docsData = res.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-  return {
-    props: {
-      postsArray: JSON.parse(safeJsonStringify(docsData)) // Safe JSON stringification
-    }
-  };
+  try {
+    const res = await getDocs(collection(firestore, "posts"));
+    const docsData = res.docs.map(doc => ({ id: doc.id, ...doc.data() })) || [];
+    return {
+      props: {
+        postsArray: JSON.parse(safeJsonStringify(docsData)) // Safe JSON stringification
+      }
+    };
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return {
+      props: {
+        postsArray: [] // Fallback to an empty array
+      }
+    };
+  }
 }
 
 function Blog({ postsArray }) {
-  // Correct destructuring
   const postCategories = [
     { id: 0, name: "All" },
     { id: 1, name: "Health" },
@@ -33,13 +39,13 @@ function Blog({ postsArray }) {
     { id: 5, name: "Social" }
   ];
 
-  const [posts, setPosts] = useState(postsArray);
-  const [filtered, setFiltered] = useState(postsArray);
+  const [posts, setPosts] = useState(postsArray || []);
+  const [filtered, setFiltered] = useState(postsArray || []);
   const [filterCategory, setFilterCategory] = useState(0);
 
   useEffect(() => {
-    setPosts(postsArray);
-    setFiltered(postsArray);
+    setPosts(postsArray || []);
+    setFiltered(postsArray || []);
   }, [postsArray]);
 
   useEffect(() => {
@@ -47,7 +53,7 @@ function Blog({ postsArray }) {
       setFiltered(posts);
     } else {
       const filteredPosts = posts.filter(
-        post => post.category.id === filterCategory
+        post => post.category?.id === filterCategory
       );
       setFiltered(filteredPosts);
     }
@@ -85,29 +91,37 @@ function Blog({ postsArray }) {
           layout
           className="grid gap-4 lg:grid-cols-2 sm:grid-cols-1 justify-center mt-20 items-center mx-auto w-10/12 lg:w-4/5 sm:w-full text-gray-300"
         >
-          {filtered.map(post => (
-            <motion.div
-              layout
-              animate={{ opacity: 1 }}
-              initial={{ opacity: 0 }}
-              exit={{ opacity: 0 }} // Correct opacity spelling
-              className="relative"
-              key={post.id}
-              style={{ backgroundImage: `url(${post.image})` }} // Correct background image syntax
-            >
-              <Link href={`/posts/${post.id}`}>
-                <Image
-                  className="w-full h-52 mx-auto object-cover"
-                  src={post.thumbnailImage}
-                  alt={`Thumbnail for ${post.title}`} // Add meaningful alt text
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-                <h3 className="text-white text-center font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  {post.title}
-                </h3>
-              </Link>
-            </motion.div>
-          ))}
+          {filtered?.length > 0 ? (
+            filtered.map(post => (
+              <motion.div
+                layout
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0 }}
+                className="relative"
+                key={post.id}
+                style={{ backgroundImage: `url(${post.image})` }}
+              >
+                <Link href={`/posts/${post.id}`}>
+                  <a>
+                    <Image
+                      className="w-full h-52 mx-auto object-cover"
+                      src={post.thumbnailImage}
+                      alt={`Thumbnail for ${post.title}`}
+                      width={500}
+                      height={300}
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+                    <h3 className="text-white text-center font-semibold text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                      {post.title}
+                    </h3>
+                  </a>
+                </Link>
+              </motion.div>
+            ))
+          ) : (
+            <p className="text-gray-300 text-center">No posts available.</p>
+          )}
         </motion.div>
       </div>
     </div>
